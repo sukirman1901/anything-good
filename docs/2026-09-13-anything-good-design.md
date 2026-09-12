@@ -1,7 +1,7 @@
 # anything-good — Design Doc
 
 Tanggal: 2026-09-13
-Status: Draft proposal (pending review user)
+Status: Pack v1 shipped; good-code v2 disetujui 2026-09-13 (Bagian 6)
 
 ## Ringkasan
 
@@ -19,7 +19,8 @@ Prinsip arsitektur (diadopsi dari anti-slop):
 ├── SKILL.md                    # CORE: mekanisme bersama
 ├── references/
 │   ├── anything-good-core.md   # kedalaman core (jika core panjang)
-│   └── good-ui-principles.md   # katalog rule good-ui (dipindah dari dalam good-ui lama)
+│   ├── good-ui-principles.md   # katalog rule good-ui (dipindah dari dalam good-ui lama)
+│   └── good-code.md            # bentuk keputusan kode (bukan katalog rule)
 ├── skills/
 │   ├── good-ui/SKILL.md            # pointed ke ../../references/good-ui-principles.md
 │   ├── good-copy/SKILL.md
@@ -75,10 +76,12 @@ Struktur seragam: purpose → kapan audit/bangun → sourcer metadata → aturan
 - Tone & voice, rhythm & structure, honesty, hygiene, voice calibration.
 - Improvement: copy error/empty-state/CTA spesifik — integrasi dengan good-ui (L2/L3) + satu pesan satu aksi.
 
-**good-code** (adaptasi antislop-code + improve):
-- Filter komentar AI (decorative, restate, narration, empty labels, vague TODO, signature echo, emoji, end-marker).
-- Preservasi: business logic, workaround, security, performance, API contract.
-- Improvement: preventif checklist sebelum nulis komentar + skala "jelaskan why, bukan apa" (conect L3).
+**good-code** (domain kode, bukan hanya komentar):
+- Nyawa: *stop completing patterns, start making decisions.* Tes: every line should earn its place. Jangan over-sterilize.
+- Comment Hygiene (L1/L2, `id` rule) + group diagnostik L3 sebagai label (bukan linter) + Engineer Judgment (2 load-bearing, 5 saat ragu).
+- Code Purpose Test ("what does this earn?") dari bukti repo.
+- Bentuk keputusan: `references/good-code.md` (pasangan pola vs keputusan, bukan katalog).
+- Change Slop naik ke core. Extract ke consumer kedua di blast radius = keputusan, bukan slop.
 
 **a11y** (adaptasi antislop-human + improve):
 - Kontras: formula + tabel + `contrast.py` (ditulis ulang, bukan salin).
@@ -112,90 +115,74 @@ Struktur seragam: purpose → kapan audit/bangun → sourcer metadata → aturan
 - Skill: good-ui, good-copy, good-code, a11y.
 - Pemasangan: symlink → `~/.config/opencode/skills/anything-good`.
 
-## Bagian 6 — Revisi good-code (proposal, pending review user)
+## Bagian 6 — Revisi good-code (disetujui 2026-09-13)
 
-**Latar:** SKILL good-code saat ini ~95% good-comments (description menyatakan "Code comments skill", trigger hanya komentar, guardrail melarang sentuh executable code). Nama vs substansi tidak match. Revisi ini membuka good-code menjadi domain kode penuh, dengan tesis: *stop completing patterns, start making decisions.*
+**Latar:** v1 ~95% good-comments. Nama vs substansi tidak match. v2 membuka domain kode penuh.
+
+Tesis (nyawa, bukan slogan cadangan): *stop completing patterns, start making decisions.*
+
+**Every line should earn its place** adalah tes, bukan izin menghapus. **Jangan over-sterilize:** kode yang hanya minim dan takut membentuk sama AI-nya dengan kode penuh wrapper.
+
+Amandemen dari review prinsip (human + professional engineer), di atas draf plan awal:
+
+1. Nyawa di atas tes. "Earn its place" tidak menjadi judul delete-first.
+2. Setara good-copy: jangan over-sterilize.
+3. Engineer Judgment: 2 pertanyaan load-bearing (sibling; task). Lima sisanya hanya saat ragu, bukan liturgi setiap diff.
+4. Group L3 tanpa `id` linter. AFTER = `[group] + bukti repo`.
+5. Satu pasang contoh keputusan per group di `references/good-code.md` (bentuk, bukan katalog 45 rule).
+6. Eksemplar boleh framework, tetap di bawah group, pack tetap agnostik.
+7. Core ikut: contoh gate, L3, AFTER, path map. README dan skill naik bersama.
+8. Q7 / Change Slop: extract ke consumer kedua yang sudah ada di blast radius = keputusan, bukan "jangan sentuh file lain".
 
 ### 6.1 Scope & prinsip induk
 
-- good-code = domain kode (bukan hanya komentar). Bagian komentar dipertahankan menjadi **satu sub-bagian: Comment Hygiene**.
-- Prinsip induk naik dari "komentar menjelaskan why" menjadi **"Every line should earn its place"**:
-  - Code exists because the problem requires it, not because good code is *supposed to look that way*.
-  - Abstraksi wajib membeli boundary yang berarti; guard melindungi kemungkinan nyata; komentar membawa info; dependency membeli kapabilitas; pattern menyelesaikan masalah aktual; refactor melayani perubahan yang diminta.
+- good-code = domain kode. Komentar = **Comment Hygiene**.
+- Kode ada karena masalahnya memintanya, bukan karena "kode bagus harusnya terlihat begitu".
+- Abstraksi membeli boundary; guard melindungi kemungkinan nyata; komentar membawa info; dependency membeli kapabilitas; pattern menyelesaikan masalah aktual; refactor melayani perubahan yang diminta.
+- Bentuk yang earning di *repo ini* (tipe domain, invariant, boundary yang baru kelihatan) adalah keputusan, bukan slop.
 
 ### 6.2 Code Purpose Test (DNA skill)
 
-Generalisasi purpose test core untuk kode. Untuk setiap tambahan non-trivial tanya **"What does this earn?"**:
+Generalisasi purpose test core. **"What does this earn?"** Jawaban sah terikat repo ini. Tanpa kebutuhan konkret ("best practice", "just in case", "clean architecture") = AI-slop tell. Kalau earning tertulis 1 baris dari repo ini, bentuk yang tidak ada di rata-rata tetap sah.
 
-| Konstruk | Jawaban sah |
-|---|---|
-| comment | informasi yang kode belum perlihatkan |
-| abstraction | boundary yang berarti |
-| dependency | kapabilitas nyata |
-| validation | invalid state yang benar-benar terjadi |
-| state | info yang harus bertahan |
-| effect | sinkronisasi dengan sistem eksternal |
-| wrapper | semantic boundary |
-| configuration | variabilitas aktual |
-| fallback | failure mode yang diperkirakan |
+### 6.3 Diagnostic groups (label, bukan rule)
 
-Jawaban tanpa kebutuhan konkret ("for flexibility", "best practice", "just in case", "clean architecture", "future-proofing", "more robust") = **AI-slop tell** → drop/rework, kecuali rule `sev: error`.
+Comment Hygiene, unnecessary, abstraction, naming, defensive, pattern, error. Change Slop di core. Engineer Judgment = mekanisme 6.4.
 
-### 6.3 Diagnostic groups (label, bukan 45 rule)
+Temuan AFTER L3: `N. [group] <bukti sibling/consumer 1 baris>`. Jangan mengarang `l3.code.*`. Cari kluster, bukan isolated tell.
 
-Group di bawah dipakai sebagai **bingkai berpikir + wajah cepat**, bukan tabel rule bernomor (yang akan melahirkan mode linter baru — kesalahan yang justru dihindari tesis ini).
+### 6.4 Engineer Judgment
 
-```
-Comment Hygiene       → deco beauty, narration, vague TODO, signature echo, over-explanation
-Unnecessary Code      → redundant guards, wrappers, pointless vars, pass-through, dead abstraction
-Abstraction Slop      → premature interfaces, one-use helpers, architecture cosplay, factory tanpa kebutuhan
-Generic Naming        → processData, handleThing, resultData, utils dumping ground, vocabulary buta-domain
-Defensive Slop        → null-check mustahil, validasi ganda, catch-and-rethrow, fallback-everything
-Pattern Slop          → pattern demi pattern, layer yang tidak berfungsi, framework cargo cult
-Change Slop           → cleanup tak terkait, refactor tak perlu, scope expansion  →  DIPINDAH ke core (6.7)
-Error Slop            → error generik, swallowed error, console.log+rethrow, context destruction
-Engineer Judgment     → mekanisme (6.4), bukan daftar
-```
+Wajib (bukti repo, bukan psikologi maintainer):
 
-Pola contoh (mis. "catch(y){}") disebut sebagai eksemplar group, bukan baris rule.
-
-### 6.4 Engineer Judgment (mekanisme, bukan checklist)
-
-Tujuh pertanyaan dijawab **dari bukti repo**, bukan proyeksi psikologi maintainer:
-
-1. Apa yang codebase ini sudah lakukan? (baca 2-3 sibling terdekat)
+1. Apa yang codebase ini sudah lakukan? (2-3 sibling)
 2. Apa yang task ini benar-benar minta?
-3. Solusi koheren terkecil apa?
-4. Aku menambah ini karena masalahnya butuh, atau karena "ini terlihat seperti good engineering"?
-5. Apakah ada primitive/pola yang sudah ada untuk dipakai?
-6. Asumsi apa tentang kebutuhan masa depan?
-7. **Apakah perubahan ini tak mengejutkan maintainer berpengalaman?** (operasionalisasi: diff hanya menyentuh file yang diminta task; pola konsisten dengan sibling; tidak ada abstraksi/dependency/config tanpa consumer lain yang nyata)
 
-### 6.5 Pemetaan ke evaluator 3-layer (jujur soal deteksi)
+Saat ragu saja: solusi koheren terkecil yang masih punya bentuk; butuh vs "good engineering"; primitive existing; asumsi masa depan; kejutan maintainer yang baca sibling yang sama.
 
-- L1/L2 (`det:true` sebagian besar): Comment Hygiene — kebanyakan bisa diperiksa mesin/manusia cepat.
-- L3 (`det:false`, butuh konteks): Unnecessary Code, Abstraction Slop, Defensive Slop, Pattern Slop, Error Slop, Naming (sebagian). **Konsekuensi: good-code jauh lebih berat L3 daripada good-ui.** Audit mode AFTER untuk bagian ini bersifat diskusi (buktikan dari repo), bukan checklist.
-- Item framework-spesifik (hooks/effects/repository layer, dst.) = **eksemplar di bawah group L3**, bukan rule agnostik; paket tetap agnostik-arsitektur.
+### 6.5 Evaluator
 
-### 6.6 Relaksasi panjang komentar
+- L1/L2: Comment Hygiene (`id`, `det` sebagian besar true).
+- L3: group di atas, `det:false`, diskusi berbukti. good-code lebih berat L3 daripada good-ui.
+- Framework = eksemplar di `references/good-code.md`, bukan rule agnostik.
 
-- Aturan absolut "1 baris, maks 2, tak pernah 3" dicabut (dari rule + checklist).
-- Ganti: **"Use the shortest comment that preserves the useful information. Length is a smell, not a violation."**
-- Alasan: dogmatisme panjang = mode berpikir yang sama dengan yang pack ini cabut dari AI.
+### 6.6 Panjang komentar
 
-### 6.7 Perubahan lintas-file yang menyertai
+"Use the shortest comment that preserves the useful information. Length is a smell, not a violation." Dogmatisme "tak pernah 3" dicabut.
 
-- **Core `SKILL.md`:** path map good-code diperluas (kode, bukan komentar); `Agent boundaries` menyerap **Change Slop** (diff menyentuh file yang diminta task; tidak ada cleanup/refactor/format tak terkait; dependency/config baru hanya bila task minta) supaya tidak diduplikasi di skill.
-- **Guardrail DURING:** tetap tidak menyentuh executable code di luar task; kode executable **hanya** berubah lewat approval findings mode AFTER (konsisten dengan boundaries core).
-- **README:** deskripsi good-code diperbarui.
-- Referensi baru tidak wajib; mekanisme tinggal di `skills/good-code/SKILL.md` (bukan katalog besar).
+### 6.7 Lintas-file
 
-### 6.8 Yang TIDAK berubah
+- Core: path map, Agent boundaries (Change Slop + carve-out extract), AFTER L3 tanpa id palsu, contoh Delivery Gate berbukti sibling, L3 copy.
+- README: domain kode + `good-code.md`.
+- Referensi kecil `references/good-code.md` = bentuk keputusan, bukan katalog.
 
-- Skema `id = layer.group.name`, `sev/det/src`; comment-rules existing yang sudah matang (preservasi business logic, security, API contract, workaround, edge case) tetap utuh di bawah Comment Hygiene.
-- Position: skill memegang aturan domain, core memegang mekanisme — satu-satunya pengecualian adalah Change Slop yang naik ke core karena lintas-domain.
+### 6.8 Yang tidak berubah
+
+- Comment Hygiene `id`/`sev`/`det`/`src` tetap. Preservasi business logic, security, API, workaround, edge.
+- Skill memegang aturan domain, core memegang mekanisme. Pengecualian: Change Slop di core; group L3 tanpa `id`.
 
 ## Selanjutnya
 
-- [ ] Review user atas doc ini
-- [ ] Tulis implementation plan (writing-plans)
+- [x] Review user atas prinsip + amandemen v2
+- [x] Tulis implementation plan
+- [x] Ship skill + core + README + `references/good-code.md`

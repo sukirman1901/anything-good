@@ -10,13 +10,13 @@ Tiga layer dipakai semua skill. `sev` `error` selalu fix (a11y/mechanical); `war
 |---|---|---|---|
 | L1 Mechanical | bisa dicek mesin (regex/kl); kontras, spacing 8pt, em dash, tap 40-44px, komentar yang menyalin kode | error | true |
 | L2 Structural | pola struktur; hierarki CTA, kartu, alur paragraf, struktur pesan error, komentar restate | warning | false/true |
-| L3 Contextual | butuh intent produk; komposisi anti-template, voice copy, komentar "why", konteks a11y | suggestion | false |
+| L3 Contextual | butuh intent produk/repo; komposisi anti-template, voice copy, keputusan kode berbukti sibling, konteks a11y | suggestion | false |
 
 Urutan fix selalu L1 → L2 → L3.
 
 ## 2. Metadata rule
 
-Canonical encoding (baris tabel di skill adalah bentuk ringkas ini):
+Canonical encoding (baris tabel di skill adalah bentuk ringkas ini). **Pengecualian:** diagnostic groups good-code L3 (`unnecessary`, `abstraction`, `naming`, `defensive`, `pattern`, `error`) adalah label, bukan `id` rule. Jangan mengarang `l3.code.*`.
 
 ```yaml
 id: layer.group.name        # mis. accessibility.text-contrast, l2.hierarchy.cta
@@ -35,10 +35,15 @@ exceptions: [ ... ]          # kasus yang diizinkan
 4. Jawaban "biar kelihatan AI" / "biar aman" → drop atau rework (kecuali `sev: error`).
 5. Alasan tak bisa ditulis 1 baris → keputusan belum valid, revisit.
 
+Di kode, bentuk domain-nya adalah Code Purpose Test ("what does this earn?") di `skills/good-code/SKILL.md`. Jawaban sah terikat repo ini, bukan "best practice".
+
 ## 4. Dua usage mode
 
 - **DURING:** aturan diterapkan saat menulis; selesai = Delivery Gate PASS ber-evidence.
-- **AFTER:** audit. Tulis temuan bernomor di `anti-slop/audit-NNN-YYYY-MM-DD.md` format: `N. [id rule] <deskripsi 1 baris> (sev: X)`. Prioritas ikut `sev`: error=HIGH, warning=MEDIUM, suggestion=LOW. User pilih nomor; hanya nomor terpilih yang difix. Lapor follow-up.
+- **AFTER:** audit. Tulis temuan bernomor di `anti-slop/audit-NNN-YYYY-MM-DD.md`.
+  - L1/L2 (punya `id`): `N. [id rule] <deskripsi 1 baris> (sev: X)`.
+  - L3 good-code (label): `N. [group] <bukti sibling/consumer 1 baris>`. Jangan mengarang id.
+  - Prioritas ikut `sev` bila ada: error=HIGH, warning=MEDIUM, suggestion=LOW. Tanpa sev (group L3) = diskusi, user pilih. Hanya nomor terpilih yang difix. Lapor follow-up.
 
 ## 5. Delivery Gate (4 blok)
 
@@ -103,5 +108,5 @@ Kontras, keyboard, fokus, states, dan zoom adalah `sev: error` di L1. Purpose te
 | core | `SKILL.md` | `references/anything-good-core.md` |
 | good-ui | `skills/good-ui/SKILL.md` | `references/good-ui-principles.md` |
 | good-copy | `skills/good-copy/SKILL.md` | — |
-| good-code | `skills/good-code/SKILL.md` | — |
+| good-code | `skills/good-code/SKILL.md` | `references/good-code.md` |
 | a11y | `skills/a11y/SKILL.md` | `skills/a11y/contrast.py` |

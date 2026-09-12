@@ -11,10 +11,11 @@ SKILL.md                 # core mekanisme
 references/              # referensi pack-level
   anything-good-core.md  # gate, metadata, dials, path map
   good-ui-principles.md  # katalog rule UI
+  good-code.md           # bentuk keputusan kode (bukan katalog rule)
 skills/
   good-ui/               # UI + layout mobile + states + app/dashboard + motion
   good-copy/             # copy anti-AI: tone, rhythm, honesty, hygiene, voice
-  good-code/             # komentar kode: filter AI, tanpa menyentuh code
+  good-code/             # domain kode: keputusan, comment hygiene, judgment
   a11y/                  # aksesibilitas; contrast.py di dalamnya
 DESIGN.schema.md         # template arah desain
 ```
@@ -30,7 +31,7 @@ Skill terdeteksi lewat `description` frontmatter. Agent lain: salin folder skill
 ## Cara pakai
 
 1. Agent membaca core `SKILL.md`; tanyakan usage mode (DURING / AFTER).
-2. Skill domain membawa aturan ber-`id` (`layer.group.name`), dicek L1→L2→L3.
+2. Skill domain dicek L1→L2→L3. L1/L2 memakai `id` (`layer.group.name`). L3 good-code memakai nama group + bukti repo, bukan id palsu.
 3. Tutup dengan **Delivery Gate** PASS/FAIL berbukti (core, Blok 1–4).
 4. Tanpa arah desain → label "draft tanpa arah" (dials ENERGY 1/RHYTHM 1/MOTION 1), bukan deliverable.
 
