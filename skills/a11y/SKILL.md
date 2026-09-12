@@ -1,12 +1,9 @@
 ---
 name: a11y
 description: >-
-  Accessibility skill from the anything-good pack: contrast (WCAG formula +
-  table + contrast.py), non-text contrast 3:1, visible focus, keyboard, states,
-  200% zoom, and mobile keyboard. Use when building or auditing accessibility
-  (including "aksesibilitas", "AI dapat keyboard?", "kontras", "a11y", "WCAG",
-  "audit aksesibilitas", "aria", "reduced motion"). References anything-good
-  core.
+  Accessibility for web UI — contrast, keyboard, focus, states, zoom. Use when
+  building or auditing a11y, including "aksesibilitas", "kontras", "a11y",
+  "WCAG", "aria".
 ---
 
 # a11y (anything-good)

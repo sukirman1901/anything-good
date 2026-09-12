@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>good-ui scan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip" href="#findings">Skip to findings</a>
+
+    <nav class="top">
+      <a class="mark" href="./index.html">anything-good</a>
+    </nav>
+
+    <header class="hero">
+      <h1>
+        good-ui
+        <em>scan</em>
+      </h1>
+      <p class="lede">Sample findings. Not an audit of this page.</p>
+    </header>
+
+    <form id="scan-form" class="toolbar">
+      <fieldset class="seg">
+        <legend class="sr-only">Layer</legend>
+        <label
+          ><input type="radio" name="layer" value="all" checked /> All</label
+        >
+        <label><input type="radio" name="layer" value="L1" /> L1</label>
+        <label><input type="radio" name="layer" value="L2" /> L2</label>
+        <label><input type="radio" name="layer" value="L3" /> L3</label>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit" class="btn btn-primary" id="run">
+          Run sample scan
+        </button>
+        <button type="button" class="btn btn-secondary" id="clear">Clear</button>
+        <button type="button" class="btn btn-tertiary" id="fail">
+          Fail the scan
+        </button>
+      </div>
+    </form>
+
+    <section id="findings" class="well" aria-labelledby="findings-title">
+      <div class="well-head">
+        <h2 id="findings-title">Findings</h2>
+        <p class="count" id="count" hidden></p>
+      </div>
+      <p class="status" id="status" role="status">No scan yet.</p>
+      <p class="empty-layer" id="empty-layer" hidden>
+        No findings in this layer.
+      </p>
+      <ol class="list" id="list"></ol>
+    </section>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,12 +1,9 @@
 ---
 name: good-ui
 description: >-
-  UI/visual skill from the anything-good pack: every element should earn its
-  space. 3-layer evaluator + mobile layout + states + app/dashboard + motion.
-  Composition clusters beat isolated tells. Use when building, restyling, or
-  auditing UI (including "rapihin UI", "buat lebih bagus", "audit UI", "terlalu
-  generik", "design"). Catalog: references/good-ui.md. References anything-good
-  core.
+  UI that earns its space — layout, states, composition, mobile. Use when
+  building or auditing screens, including "rapihin UI", "buat lebih bagus",
+  "audit UI", "terlalu generik", "design".
 ---
 
 # Good UI (anything-good)

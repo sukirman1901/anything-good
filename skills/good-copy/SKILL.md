@@ -1,13 +1,9 @@
 ---
 name: good-copy
 description: >-
-  Copy skill from the anything-good pack: every sentence should earn the
-  reader's attention. Decisions first (voice, specificity, does this surface
-  need copy); AI detectors (empty claims, rhythm clusters, capability-inflation)
-  as evidence, not a banned-word list. Use when writing or editing prose:
-  headlines, CTAs, error/empty states, landing copy, "buat copy lebih bagus",
-  "tulisan terasa AI", "pesan error", "teks tombol". References anything-good
-  core.
+  Copy that earns attention — headlines, CTAs, errors, empty states. Use when
+  writing or editing prose, including "buat copy lebih bagus",
+  "tulisan terasa AI", "pesan error", "teks tombol".
 ---
 
 # Good Copy (anything-good)

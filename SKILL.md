@@ -1,15 +1,9 @@
 ---
 name: anything-good
 description: >-
-  Multi-domain anti-slop filter and 3-layer evaluator for AI coding agents.
-  Core holds DNA (every line/sentence/element must earn its keep), cluster >
-  isolated tell, purpose test, Delivery Gate, DURING/AFTER, DESIGN.md + dials.
-  Four skills (good-ui, good-copy, good-code, a11y) reference core and do NOT
-  duplicate its mechanism. Use when building, restyling, writing copy, writing
-  or reviewing code, or auditing AI slop, including "rapihin UI", "terlalu
-  generik", "buat copy lebih bagus", "rapikan kode", "over-engineered",
-  "bersihkan komentar AI", "audit aksesibilitas", "design". Load the core
-  whenever any of its skills loads.
+  Anti-slop pack for UI, copy, code, and a11y. Use when building or auditing
+  AI-looking work, including "rapihin UI", "buat copy lebih bagus",
+  "rapikan kode", "audit aksesibilitas", "design".
 ---
 
 # anything-good

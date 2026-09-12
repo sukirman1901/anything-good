@@ -1,12 +1,9 @@
 ---
 name: good-code
 description: >-
-  Code skill from the anything-good pack: stop completing patterns, start
-  making decisions. Filters AI slop in code and comments via the Code Purpose
-  Test ("what does this earn?") and Engineer Judgment from repo evidence, not
-  from a checklist. Use when writing, auditing, or reviewing code (including
-  "rapikan kode", "over-engineered", "abstraksi berlebihan", "kode terasa AI",
-  "bersihkan komentar AI"). References anything-good core.
+  Code that earns its place — decisions over pattern-completion. Use when
+  writing or reviewing code, including "rapikan kode", "over-engineered",
+  "kode terasa AI", "bersihkan komentar AI".
 ---
 
 # Good Code (anything-good)
