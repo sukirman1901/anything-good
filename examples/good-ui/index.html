@@ -3,7 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>good-ui scan</title>
+    <title>anything-good</title>
+    <meta
+      name="description"
+      content="Skills that stop an agent from finishing the usual UI, copy, and code. Install with npx skills add."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,53 +17,108 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <a class="skip" href="#findings">Skip to findings</a>
+    <a class="skip" href="#install">Skip to install</a>
 
-    <nav class="top">
+    <header class="top">
       <a class="mark" href="./index.html">anything-good</a>
-    </nav>
-
-    <header class="hero">
-      <h1>
-        good-ui
-        <em>scan</em>
-      </h1>
-      <p class="lede">Sample findings. Not an audit of this page.</p>
+      <div class="top-actions">
+        <a class="btn btn-secondary btn-compact" href="https://github.com/sukirman1901/anything-good"
+          >GitHub</a
+        >
+        <a class="btn btn-primary btn-compact" href="#install">Install</a>
+      </div>
     </header>
 
-    <form id="scan-form" class="toolbar">
-      <fieldset class="seg">
-        <legend class="sr-only">Layer</legend>
-        <label
-          ><input type="radio" name="layer" value="all" checked /> All</label
-        >
-        <label><input type="radio" name="layer" value="L1" /> L1</label>
-        <label><input type="radio" name="layer" value="L2" /> L2</label>
-        <label><input type="radio" name="layer" value="L3" /> L3</label>
-      </fieldset>
-
-      <div class="actions">
-        <button type="submit" class="btn btn-primary" id="run">
-          Run sample scan
-        </button>
-        <button type="button" class="btn btn-secondary" id="clear">Clear</button>
-        <button type="button" class="btn btn-tertiary" id="fail">
-          Fail the scan
-        </button>
+    <section class="hero">
+      <div class="hero-copy">
+        <h1>
+          anything-good
+          <em>for agents</em>
+        </h1>
+        <p class="lede">
+          When an agent builds UI, writes copy, or edits code, it finishes the
+          pattern it has seen most often. This pack makes it answer why that
+          pattern belongs in this product.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#install">Install</a>
+        </div>
       </div>
-    </form>
-
-    <section id="findings" class="well" aria-labelledby="findings-title">
-      <div class="well-head">
-        <h2 id="findings-title">Findings</h2>
-        <p class="count" id="count" hidden></p>
-      </div>
-      <p class="status" id="status" role="status">No scan yet.</p>
-      <p class="empty-layer" id="empty-layer" hidden>
-        No findings in this layer.
-      </p>
-      <ol class="list" id="list"></ol>
+      <figure class="hero-fig" aria-hidden="true">
+        <img
+          src="./GroovyDoodle.svg"
+          alt=""
+          width="1024"
+          height="768"
+        />
+      </figure>
     </section>
+
+    <section class="prose" aria-labelledby="what-title">
+      <h2 id="what-title">What it is</h2>
+      <p>
+        A line, a sentence, or an element that cannot earn its keep does not
+        ship. One tell is normal. A cluster with no reason is slop.
+      </p>
+      <p>
+        It does not choose your colors, type, or layout. You do, in
+        <code>DESIGN.md</code>.
+      </p>
+    </section>
+
+    <section class="skills" aria-labelledby="skills-title">
+      <h2 id="skills-title">Skills</h2>
+      <ol class="skill-list">
+        <li class="is-lead">
+          <h3>good-ui</h3>
+          <p>UI that earns its space. Start here when the screen is the work.</p>
+        </li>
+        <li>
+          <h3>good-copy</h3>
+          <p>Headlines, CTAs, errors, empty states.</p>
+        </li>
+        <li>
+          <h3>good-code</h3>
+          <p>Decisions instead of the usual pattern.</p>
+        </li>
+        <li>
+          <h3>a11y</h3>
+          <p>Contrast, keyboard, focus. Not negotiable.</p>
+        </li>
+      </ol>
+      <p class="note">
+        <code>good-ux</code> is a knowledge map. It is not a skill yet.
+      </p>
+    </section>
+
+    <section class="prose use" aria-labelledby="use-title">
+      <h2 id="use-title">How to use</h2>
+      <p>
+        The agent asks: apply while building, or audit what already exists.
+      </p>
+      <p>
+        While building, it applies the rules and only hands work over when the
+        gate passes with evidence. An audit is a numbered list. You pick the
+        numbers. Unselected items stay.
+      </p>
+    </section>
+
+    <section id="install" class="install" aria-labelledby="install-title">
+      <h2 id="install-title">Install</h2>
+      <div class="cmd">
+        <pre><code id="cmd-text">npx skills add sukirman1901/anything-good</code></pre>
+        <button type="button" class="btn btn-primary btn-compact" id="copy">Copy</button>
+      </div>
+      <p class="status" id="copy-status" role="status"></p>
+      <p>That command finds the agents already on the machine.</p>
+    </section>
+
+    <footer class="foot">
+      <p>MIT (c) 2026 heykirman.</p>
+      <p>
+        <a href="https://github.com/sukirman1901/anything-good">GitHub</a>
+      </p>
+    </footer>
 
     <script src="./app.js"></script>
   </body>
