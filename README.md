@@ -1,24 +1,25 @@
 # anything-good
 
-Paket skill anti-slop multi-domain untuk AI coding agents: **UI**, **copy**, **code**, dan **a11y**. Satu DNA: setiap baris, kalimat, dan elemen harus earning. Cluster mengalahkan isolated tell. Bukan style guide.
+Multi-domain anti-slop skill pack for AI coding agents: **UI**, **copy**, **code**, and **a11y**. One DNA: every line, sentence, and element must earn its keep. Cluster beats isolated tell. Not a style guide.
 
-Professional ≠ sanitized. Arah desain dari user (via `DESIGN.md`).
+Professional ≠ sanitized. Design direction comes from the user (via `DESIGN.md`).
 
-## Struktur
+## Layout
 
 ```
 SKILL.md                 # core: DNA, cluster, gate, dials
 references/
   anything-good-core.md  # gate, metadata, path map
-  good-ui.md             # katalog rule UI
-  good-copy.md           # bentuk keputusan copy
-  good-code.md           # bentuk keputusan kode
+  good-ui.md             # UI rule catalog
+  good-copy.md           # copy decision shapes
+  good-code.md           # code decision shapes
+  good-ux.md             # UX knowledge map (not a skill)
 skills/
   good-ui/               # UI: earn its space
   good-copy/             # copy: earn attention
-  good-code/             # kode: earn its place
+  good-code/             # code: earn its place
   a11y/                  # Hard-forever; contrast.py
-DESIGN.schema.md         # template arah desain
+DESIGN.schema.md         # design-direction template
 ```
 
 ## Install (opencode)
@@ -27,17 +28,17 @@ DESIGN.schema.md         # template arah desain
 ln -sfn /Users/aaa/Documents/Developer/Skills/anything-good "$HOME/.config/opencode/skills/anything-good"
 ```
 
-Skill terdeteksi lewat `description` frontmatter. Agent lain: salin folder skill ke path yang dibaca agent masing-masing.
+Skills are detected via frontmatter `description`. Other agents: copy the skill folder to whatever path that agent reads.
 
-## Cara pakai
+## How to use
 
-1. Agent membaca core `SKILL.md`; tanyakan usage mode (DURING / AFTER).
-2. Skill domain dicek L1→L2→L3. Isolated tell bukan pengakuan; kluster adalah. L1/L2 memakai `id`. L3 good-code memakai nama group + bukti repo.
-3. Tutup dengan **Delivery Gate** PASS/FAIL berbukti (core, Blok 1–4). Punctuation bukan Hard Gate.
-4. Tanpa arah desain → label "draft tanpa arah" (dials ENERGY 1/RHYTHM 1/MOTION 1), bukan deliverable.
+1. The agent reads core `SKILL.md` and asks usage mode (DURING / AFTER).
+2. Domain skills scan L1→L2→L3. An isolated tell is not a conviction; a cluster is. L1/L2 use `id`. L3 good-code uses group name + repo evidence.
+3. Close with **Delivery Gate** PASS/FAIL plus evidence (core, Blocks 1–4). Punctuation is not a Hard Gate.
+4. No design direction → label "draft without direction" (dials ENERGY 1/RHYTHM 1/MOTION 1), not a deliverable.
 
-## Atribusi & lisensi
+## Attribution & license
 
-MIT (c) 2026. Dibangun di atas skema rule anti-slop publik (MIT). Katalog rule UI menandai asal tiap pola via kolom `src`:
-- **B1/B2**: *How to Design Better UI 3.0* (Adrian Kuleszo) dan *50 UI Do's & Don'ts* (Pixsel Academy)
-- **AS**: pola yang diadaptasi dari skema rule publik (MIT)
+MIT (c) 2026. Built on a public anti-slop rule scheme (MIT). The UI rule catalog marks origin per pattern via `src`:
+- **B1/B2**: *How to Design Better UI 3.0* (Adrian Kuleszo) and *50 UI Do's & Don'ts* (Pixsel Academy)
+- **AS**: patterns adapted from the public anti-slop scheme (MIT)

@@ -1,6 +1,6 @@
 # good-ui
 
-Tes pack: **every element should earn its space.** Katalog di bawah adalah detector dan default ladder, bukan style guide. Isolated tell bukan pengakuan; kluster komposisi adalah. Kontras/keyboard/fokus: skill `a11y`. Copy: skill `good-copy`.
+Pack test: **every element should earn its space.** The catalog below is detectors and a default ladder, not a style guide. An isolated tell is not a conviction; a composition cluster is. Contrast/keyboard/focus: skill `a11y`. Copy: skill `good-copy`.
 
 **Operating model (UI Critic + UI Generator contract):**
 
@@ -32,7 +32,7 @@ Every rule below is a table row. Columns mean:
 | `id` | Stable identifier for the engine (`layer.group.name`) |
 | `sev` | `error` (a11y/mechanical breach — fix always) · `warning` (heuristic defect — fix unless waived) · `suggestion` (judgment — needs product context) |
 | `det` | `true` = deterministic/lintable · `false` = heuristic/judgment, requires context |
-| `src` | `B1` = UI 3.0 book · `B2` = 50 Do's & Don'ts book · `AS` = anti-slop (diadaptasi) |
+| `src` | `B1` = UI 3.0 book · `B2` = 50 Do's & Don'ts book · `AS` = anti-slop (adapted) |
 
 Canonical encoding (the table rows are the compact form of this):
 
@@ -295,14 +295,14 @@ Heuristics that live here (apply with judgment):
 - **Above the fold**: what must be seen first is a *product decision*, not a CSS one. Tease the next section (content peeking) to guide scroll.
 - **Modal vs inline**: irreversible/destructive/purchase → modal; routine errors → inline/snackbar. Never modal-by-default.
 - **Emphasis**: which plan/card/feature gets highlighted is a business intent, not an aesthetic choice.
-- **Removal**: the strongest composition tool. Tes pack: does this element earn its space? "Should this exist at all?" is always in scope.
+- **Removal**: the strongest composition tool. Pack test: does this element earn its space? "Should this exist at all?" is always in scope.
 - **Product fit**: the last gate — does the UI serve *this* product and *this* user, or would it paste onto any SaaS demo? If the page is interchangeable, composition failed.
 
 ## Copy & microcopy (judgment-heavy)
 
 | id | Marker | Fix | sev | det | src |
 |---|---|---|---|---|---|
-| `copy.human` | Robotic counts / "Submit" / inflated energy ("Join the Club!" without that voice) | Delegasi `good-copy`: specific truth, bukan template. Voice sampel/DESIGN.md menang | warning | false | B2 |
+| `copy.human` | Robotic counts / "Submit" / inflated energy ("Join the Club!" without that voice) | Defer to `good-copy`: specific truth, not a template. User sample / DESIGN.md wins | warning | false | B2 |
 | `copy.modal-mirror` | Modal buttons mismatch the question ([Cancel][OK]) | [Don't Cancel][Yes, Cancel] — restates action + outcome | warning | false | B2 |
 | `copy.no-double-negative` | "Are you sure you don't want to keep your account?" | Ask positively ("Keep your account?") | error | false | B1 |
 | `copy.vs-verb` | Verb on nav item vs noun destination confusion | CTA buttons = verbs; nav/list items = nouns | warning | false | B2 |
@@ -391,42 +391,42 @@ A surface is **done** only when L1 is clean, L2 is waived-or-fixed, and L3 has a
 
 | id | sev | det | src | rule | fix |
 |---|---|---|---|---|---|
-| `l2.states.all-three` | error | false | AS | Setiap view data wajib punya empty/loading/error state | Implementasikan ketiganya; jangan design happy-path only |
-| `l2.states.loading-with-text` | warning | false | AS | Loading state menyebut apa yang dimuat | Spinner + teks kontekstual, bukan spinner telanjang |
-| `l2.states.empty-with-action` | warning | false | AS | Empty state menyebut penyebab + satu aksi pengisian | "Belum ada job. Sync untuk melihat hasil" bukan "No data" |
-| `l2.states.error-with-recovery` | warning | false | AS | Error state menyebut apa yang gagal + cara lanjut | Kalimat aksi-nyata; bukan "Terjadi kesalahan" polos |
+| `l2.states.all-three` | error | false | AS | Every data view must have empty/loading/error states | Implement all three; do not design happy-path only |
+| `l2.states.loading-with-text` | warning | false | AS | Loading state names what is being loaded | Spinner + contextual text, not a naked spinner |
+| `l2.states.empty-with-action` | warning | false | AS | Empty state names the cause + one fill action | "No jobs yet. Sync to see results" not "No data" |
+| `l2.states.error-with-recovery` | warning | false | AS | Error state names what failed + how to continue | A real next action; not a bare "Something went wrong" |
 
 # Mobile layout (reflow)
 
 | id | sev | det | src | rule | fix |
 |---|---|---|---|---|---|
-| `l1.mobile.no-horiz-overflow` | error | true | AS | Tanpa scroll horizontal di lebar mana pun | Temukan element > viewport (tabel/code/image/string panjang), contain/reflow |
-| `l1.mobile.tap-targets` | error | true | AS | Target interaktif ≥44px dengan jarak antar-target | Padding/hit-box diperbesar; beri gap |
-| `l2.mobile.breakpoint-content` | warning | false | AS | Breakpoint berdasar tempat konten pecah, bukan daftar device | Susutkan viewport, set breakpoint di titik pecah |
-| `l2.mobile.not-squeezed-desktop` | warning | false | AS | Mobile adalah layout berbeda, bukan desktop yang disusutkan | Re-stack, rescale, reorder dengan intent; definisikan state nyata (umumnya 3: single col → 2-col → grid penuh) |
-| `l2.mobile.grid-collapse` | warning | true | AS | Grid multi-col collapse ke single reflowing column | `grid-template-columns` dengan minmax/auto-fit; collapse di breakpoint |
-| `l2.mobile.no-fixed-px-children` | warning | true | AS | Anak grid/flex tanpa fixed px/min-width yang membocor | Relative units, flex-wrap, min-width:0 |
-| `l2.mobile.bottom-nav-spacing` | warning | false | AS | Fixed nav (bottom/sticky) tak menutupi konten; hormati safe-area | scroll-padding + insets; verifikasi item terakhir terjangkau |
-| `l2.mobile.hover-only` | warning | false | AS | Interaksi hover-only punya ekuivalen tap + feedback `:active` | Menu buka di tap juga |
-| `l2.mobile.scaled-everything` | warning | false | AS | Padding/hero/card desktop tidak dibawa mentah ke mobile | Skala mobile sendiri (type lebih kecil, padding section ~half) |
-| `l2.mobile.100vh-sections` | warning | true | AS | Sections tidak `100vh` di mobile | `auto`, atau `dvh` bila full-height nyata |
-| `l2.mobile.nav-collapsed` | warning | false | AS | Nav mobile: bottom nav untuk destinasi utama atau menu berlabel; bukan row desktop | Collapse ke pola mobile; tutup hamburger berlabel ("Menu") |
+| `l1.mobile.no-horiz-overflow` | error | true | AS | No horizontal scroll at any width | Find elements wider than the viewport (table/code/image/long string), contain/reflow |
+| `l1.mobile.tap-targets` | error | true | AS | Interactive targets ≥44px with gap between targets | Enlarge padding/hit-box; add gap |
+| `l2.mobile.breakpoint-content` | warning | false | AS | Breakpoints where content breaks, not a device list | Shrink the viewport, set the breakpoint at the break point |
+| `l2.mobile.not-squeezed-desktop` | warning | false | AS | Mobile is a different layout, not squeezed desktop | Re-stack, rescale, reorder with intent; define real states (usually 3: single col → 2-col → full grid) |
+| `l2.mobile.grid-collapse` | warning | true | AS | Multi-col grid collapses to a single reflowing column | `grid-template-columns` with minmax/auto-fit; collapse at the breakpoint |
+| `l2.mobile.no-fixed-px-children` | warning | true | AS | Grid/flex children without fixed px/min-width that overflow | Relative units, flex-wrap, min-width:0 |
+| `l2.mobile.bottom-nav-spacing` | warning | false | AS | Fixed nav (bottom/sticky) must not cover content; honor safe-area | scroll-padding + insets; verify the last item is reachable |
+| `l2.mobile.hover-only` | warning | false | AS | Hover-only interaction has a tap equivalent + `:active` feedback | Menu also opens on tap |
+| `l2.mobile.scaled-everything` | warning | false | AS | Desktop padding/hero/card not brought raw onto mobile | Its own mobile scale (smaller type, ~half section padding) |
+| `l2.mobile.100vh-sections` | warning | true | AS | Sections are not `100vh` on mobile | `auto`, or `dvh` if full-height is real |
+| `l2.mobile.nav-collapsed` | warning | false | AS | Mobile nav: bottom nav for primary destinations or a labeled menu; not a desktop row | Collapse to a mobile pattern; labeled hamburger ("Menu") |
 
 # App & dashboard
 
 | id | sev | det | src | rule | fix |
 |---|---|---|---|---|---|
-| `l2.dashboard.job-first` | warning | false | AS | Layout dibangun dari keputusan user di layar itu, bukan sidebar+stat+chart+table default | Nama pekerjaan layar → hierarki untuk itu; section template di-cut |
-| `l2.dashboard.real-numbers` | error | false | AS | Stat cards memakai angka nyata atau placeholder `[REAL DATA]`; delta hanya bila periode nyata+dinamai | Hubungkan ke data; delta tanpa seri = hapus |
-| `l2.dashboard.real-feed` | error | false | AS | Feed menampilkan event nyata; orang/event fiktif = hapus | Empty state jujur + instruksi aksi pertama |
-| `l2.dashboard.chart-answers-question` | warning | false | AS | Chart menjawab pertanyaan; judul = pertanyaan | "Failed jobs per hour, last 24h"; kalau kalimat lebih jawab, pakai kalimat |
-| `l2.dashboard.columns-decide` | warning | false | AS | Kolom tabel dari keputusan user di tabel itu; field penentu di depan | Susun kolom dari decision; aksi nyata di menu row |
-| `l2.dashboard.no-fake-fill` | error | true | AS | Cell kosong tetap kosong; placeholder jujur ("Your Name", `[REAL DATA]`); bukan "John Doe"/"johndoe@example.com" | Kosongkan atau beri placeholder ber-label |
+| `l2.dashboard.job-first` | warning | false | AS | Layout is built from the user's decision on that screen, not a sidebar+stat+chart+table default | Name the screen's job → hierarchy for that; cut template sections |
+| `l2.dashboard.real-numbers` | error | false | AS | Stat cards use real numbers or `[REAL DATA]` placeholders; deltas only if the period is real and named | Wire to data; delta without a series = delete |
+| `l2.dashboard.real-feed` | error | false | AS | Feed shows real events; fictional people/events = delete | Honest empty state + first-action instruction |
+| `l2.dashboard.chart-answers-question` | warning | false | AS | Chart answers a question; title = the question | "Failed jobs per hour, last 24h"; if a sentence answers better, use a sentence |
+| `l2.dashboard.columns-decide` | warning | false | AS | Table columns come from the user's decision in that table; deciding fields first | Order columns from the decision; real actions in the row menu |
+| `l2.dashboard.no-fake-fill` | error | true | AS | Empty cells stay empty; honest placeholders ("Your Name", `[REAL DATA]`); not "John Doe"/"johndoe@example.com" | Empty them or use a labeled placeholder |
 
 # Motion
 
 | id | sev | det | src | rule | fix |
 |---|---|---|---|---|---|
-| `l3.motion.dials-consistent` | warning | true | AS | Gerak konsisten dengan MOTION dial (dial 1 = hover only, tanpa loop) | Sesuaikan; claimed cinematic harus gerak, claimed static tidak |
-| `l3.motion.no-endless-loop` | warning | false | AS | Tanpa pulse/bounce/float abadi tanpa trigger | Motion = pandu perhatian ke momen, tidak jalan terus; satu pola yang mengulang hanya jika dial |
-| `l3.motion.purpose-written` | suggestion | false | AS | Animasi punya UX purpose tertulis | Tulis tujuannya; tanpa purpose = hapus/rework |
+| `l3.motion.dials-consistent` | warning | true | AS | Motion matches the MOTION dial (dial 1 = hover only, no loop) | Adjust; claimed cinematic must move, claimed static must not |
+| `l3.motion.no-endless-loop` | warning | false | AS | No endless pulse/bounce/float without a trigger | Motion guides attention to a moment, does not run forever; a repeating pattern only if the dial says so |
+| `l3.motion.purpose-written` | suggestion | false | AS | Animation has a written UX purpose | Write the purpose; no purpose = delete/rework |

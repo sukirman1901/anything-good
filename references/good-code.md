@@ -1,19 +1,19 @@
-# good-code — Bentuk keputusan
+# good-code — Decision shapes
 
-Bukan katalog rule. Satu pasang per group: pola dilengkapi vs keputusan di repo ini. Agent meniru bentuk berpikir, bukan meniru snippet.
+Not a rule catalog. One pair per group: completed pattern vs a decision in this repo. The agent copies the shape of thinking, not the snippet.
 
-Eksemplar memakai JavaScript/React sebagai wajah. Pack tetap agnostik: pindahkan ke idiom sibling yang ada.
+Exemplars use JavaScript/React as a face. The pack stays architecture-agnostic: map onto whatever idiom siblings already use.
 
-## Cara baca
+## How to read
 
-- Kolom **pola** = completing patterns (AI-facts).
-- Kolom **keputusan** = earning yang bisa ditunjuk di repo.
-- Isolated tell bukan pengakuan. Kluster + bukti sibling = temuan.
-- Temuan AFTER: `N. [group] <bukti 1 baris>`. Jangan mengarang `l3.code.*`.
+- **Pattern** column = completing patterns (AI-facts).
+- **Decision** column = earning you can point to in the repo.
+- An isolated tell is not a conviction. Cluster + sibling evidence = a finding.
+- AFTER finding: `N. [group] <evidence in one line>`. Do not invent `l3.code.*`.
 
 ## unnecessary
 
-**Pola.** Pass-through dan variabel yang tidak menambah arti.
+**Pattern.** Pass-throughs and variables that add no meaning.
 
 ```js
 function fetchUsers() {
@@ -23,17 +23,17 @@ const result = fetchUsers();
 return result;
 ```
 
-**Keputusan.** Panggil di tapak yang butuh. Extract hanya setelah tapak kedua nyata (bukan yang dibayangkan).
+**Decision.** Call at the site that needs it. Extract only after a second real site exists (not an imagined one).
 
 ```js
 return api.get("/users");
 ```
 
-Kalau `settings.ts` dan `billing.ts` sudah memetakan payload user yang sama, extract *mapping itu* (bukan wrapper HTTP) ke primitive yang sibling sudah cari.
+If `settings.ts` and `billing.ts` already map the same user payload, extract *that mapping* (not the HTTP wrapper) into the primitive siblings are already looking for.
 
 ## abstraction
 
-**Pola.** Interface dan factory untuk satu consumer.
+**Pattern.** Interface and factory for one consumer.
 
 ```js
 class StripeGateway extends PaymentGateway {
@@ -42,7 +42,7 @@ class StripeGateway extends PaymentGateway {
 const gateway = GatewayFactory.create("stripe");
 ```
 
-**Keputusan.** Fungsi di sebelah route yang memakainya. Boundary dibeli ketika repo sudah punya dua sisi nyata (mis. Stripe *dan* invoice yang sudah ada), bukan ketika buku bilang "portability".
+**Decision.** A function next to the route that uses it. A boundary is bought when the repo already has two real sides (e.g. Stripe *and* an invoice that already exists), not when a book says "portability".
 
 ```js
 export function chargeOrder(order) {
@@ -50,11 +50,11 @@ export function chargeOrder(order) {
 }
 ```
 
-Temuan: `[abstraction] IPaymentGateway hanya dipakai di charge.ts; refund.ts tetap inline. Factory tidak membeli boundary.`
+Finding: `[abstraction] IPaymentGateway is only used in charge.ts; refund.ts stays inline. The factory buys no boundary.`
 
 ## naming
 
-**Pola.** Nama dari tutorial, bukan dari domain repo.
+**Pattern.** Tutorial names, not this repo's domain.
 
 ```js
 function processData(data) {
@@ -62,7 +62,7 @@ function processData(data) {
 }
 ```
 
-**Keputusan.** Vocab dari sibling. Kalau `invoices.ts` bilang `applyStripeTax`, jangan `processData`.
+**Decision.** Vocab from siblings. If `invoices.ts` says `applyStripeTax`, do not say `processData`.
 
 ```js
 function applyStripeTax(invoice) {
@@ -70,11 +70,11 @@ function applyStripeTax(invoice) {
 }
 ```
 
-Type lie (`as unknown as User`, `any`) adalah naming yang curang: nama bilang User, nilai belum tentu. Narrow atau `unknown`, jangan kosmetik.
+A type lie (`as unknown as User`, `any`) is dishonest naming: the name says User, the value may not be. Narrow or `unknown`; no cosmetics.
 
 ## defensive
 
-**Pola.** Guard pada state yang type/API tidak pernah kirim.
+**Pattern.** Guards on a state the type/API never sends.
 
 ```js
 if (user && user.profile && user.profile.email) {
@@ -82,36 +82,36 @@ if (user && user.profile && user.profile.email) {
 }
 ```
 
-**Keputusan.** Guard di batas tempat payload memang parsial. Di dalam, setelah `parseUser`, pakai field-nya.
+**Decision.** Guard at the boundary where the payload is actually partial. Inside, after `parseUser`, use the field.
 
 ```js
-const user = parseUser(payload); // parseUser adalah batas
+const user = parseUser(payload); // parseUser is the boundary
 send(user.email);
 ```
 
-Fallback-everything ("kalau gagal, kembalikan []") hanya sah bila sibling sudah memperlakukan kosong sebagai sukses, dan task ini memang permukaan yang sama.
+Fallback-everything ("if it fails, return []") is valid only if siblings already treat empty as success, and this task is the same surface.
 
 ## pattern
 
-**Pola.** Layer karena "begini arsitekturnya".
+**Pattern.** Layers because "that is how architecture looks".
 
 ```js
-// store + service + repository + mapper untuk satu form
+// store + service + repository + mapper for one form
 usePaymentStore.getState().setLoading(true);
 await PaymentService.from(PaymentRepository).submit(form);
 ```
 
-**Keputusan.** Ikuti sibling terdekat. Kalau `settings-form.ts` submit lokal ke action yang sudah ada, form pembayaran yang sama ukurannya mengikuti itu.
+**Decision.** Follow the nearest sibling. If `settings-form.ts` submits locally to an existing action, a payment form of the same size follows that.
 
 ```js
 await savePaymentMethod(form);
 ```
 
-Eksemplar framework (bukan rule pack): `useEffect` yang `setState` dari props/state yang sudah di scope = derived, bukan effect. Effect hanya sinkron ke sistem eksternal. Satu `useX` dengan satu caller = abstraction prematur; inline sampai caller kedua ada.
+Framework exemplars (not pack rules): a `useEffect` that `setState`s from props/state already in scope = derived, not an effect. Effects only sync to external systems. One `useX` with one caller = premature abstraction; inline until a second caller exists.
 
 ## error
 
-**Pola.** Catch generik yang membuang konteks.
+**Pattern.** Generic catch that destroys context.
 
 ```js
 try {
@@ -123,7 +123,7 @@ try {
 }
 ```
 
-**Keputusan.** Petakan kegagalan permukaan ini. Yang tidak diketahui, label unknown. Jangan mengarang retry/idempotency.
+**Decision.** Map this surface's failures. Unknown stays labeled unknown. Do not invent retry/idempotency.
 
 ```js
 try {
@@ -133,26 +133,26 @@ try {
     showDecline(e.code);
     return;
   }
-  throw e; // unknown: jangan dikosmetik
+  throw e; // unknown: do not cosmeticize
 }
 ```
 
-Temuan: `[error] catch di checkout.tsx menelan error jadi toast generik; sibling billing.tsx sudah cabang CardDeclined.`
+Finding: `[error] catch in checkout.tsx swallows the error into a generic toast; sibling billing.tsx already branches CardDeclined.`
 
-## Comment Hygiene (pengingat)
+## Comment Hygiene (reminder)
 
-Lihat tabel `id` di `skills/good-code/SKILL.md`. Contoh yang wajib bertahan:
+See the `id` table in `skills/good-code/SKILL.md`. Example that must survive:
 
 ```js
 // Stripe may retry webhook deliveries for up to three days.
 // Ignore duplicate events using the event ID.
 ```
 
-Panjang adalah smell, bukan pelanggaran.
+Length is a smell, not a violation.
 
-## Change Slop vs extract yang sah
+## Change Slop vs a valid extract
 
-Bukan temuan group di file ini. Ada di Agent boundaries core.
+Not a group finding in this file. Lives in core Agent boundaries.
 
-- Cleanup, format, refactor file yang task tidak minta = Change Slop.
-- Pindah primitive ke sibling yang *sudah* jadi consumer kedua dalam blast radius task ini = keputusan. Tulis earning 1 baris, jangan samarkan sebagai "rapihin sekalian".
+- Cleanup, format, refactor of files the task did not ask for = Change Slop.
+- Moving a primitive to a sibling that is *already* a second consumer in this task's blast radius = a decision. Write a one-line earning; do not disguise it as "while we're here".

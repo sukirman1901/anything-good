@@ -1,137 +1,137 @@
 ---
 name: good-code
 description: >-
-  Code skill dari pack anything-good: stop completing patterns, start making
-  decisions. Menyaring AI-slop pada kode dan komentar lewat Code Purpose Test
-  ("what does this earn?") dan Engineer Judgment dari bukti repo, bukan dari
-  checklist. Use when writing, auditing, or reviewing code (termasuk "rapikan
-  kode", "over-engineered", "abstraksi berlebihan", "kode terasa AI",
-  "bersihkan komentar AI"), yang merujuk mekanisme core anything-good.
+  Code skill from the anything-good pack: stop completing patterns, start
+  making decisions. Filters AI slop in code and comments via the Code Purpose
+  Test ("what does this earn?") and Engineer Judgment from repo evidence, not
+  from a checklist. Use when writing, auditing, or reviewing code (including
+  "rapikan kode", "over-engineered", "abstraksi berlebihan", "kode terasa AI",
+  "bersihkan komentar AI"). References anything-good core.
 ---
 
 # Good Code (anything-good)
 
-Bagian dari pack anything-good. Core (`../../SKILL.md`) memegang mekanisme (evaluator 3-layer, purpose test, Delivery Gate, Change Slop di Agent boundaries). Skill ini membawa aturan domain kode. Bentuk keputusan: `../../references/good-code.md`.
+Part of the anything-good pack. Core (`../../SKILL.md`) holds mechanism (3-layer evaluator, purpose test, Delivery Gate, Change Slop in Agent boundaries). This skill holds code-domain rules. Decision shapes: `../../references/good-code.md`.
 
-## Kapan dipakai
+## When to use
 
-- DURING: menulis/menyunting kode dan komentar dalam cakupan task.
-- AFTER: audit AI-slop. Comment Hygiene memakai `id` rule. Group L3 memakai nama group + bukti repo, bukan id palsu.
-- Perubahan executable di luar task hanya lewat approval mode AFTER.
+- DURING: write/edit code and comments in the task scope.
+- AFTER: audit AI slop. Comment Hygiene uses rule `id`. L3 groups use group name + repo evidence, not fake ids.
+- Executable changes outside the task only via AFTER approval.
 
-## Nyawa: stop completing patterns, start making decisions
+## Spine: stop completing patterns, start making decisions
 
-AI melengkapi pola yang sering muncul. Engineer memutuskan bentuk untuk masalah ini, di repo ini.
+AI completes patterns that show up often. An engineer chooses a shape for this problem, in this repo.
 
-**Every line should earn its place** adalah tes, bukan izin menghapus. Kode ada karena masalahnya memintanya, bukan karena "kode bagus harusnya terlihat begitu".
+**Every line should earn its place** is a test, not a license to delete. Code exists because the problem requires it, not because good code is *supposed to look that way*.
 
-**Jangan over-sterilize.** Menghindari pola AI separuh pekerjaan. Kode yang hanya minim dan takut membentuk sama AI-nya dengan kode penuh wrapper. Tipe domain, invariant bernama, boundary yang baru kelihatan setelah masalah dipahami: boleh, asal earning-nya ditulis 1 baris dari repo ini.
+**Do not over-sterilize.** Avoiding AI patterns is half the job. Code that is only minimal and afraid to take shape is as AI as code full of wrappers. A domain type, a named invariant, a boundary that appeared after the problem was understood: allowed, if its earning is one line from this repo.
 
-Cocokkan craft sibling. Kalau sibling sloppy, naikkan lantai (hapus tell L1/L2) tanpa mengarang arsitektur baru.
+Match sibling craft. If siblings are sloppy, raise the floor (strip L1/L2 tells) without inventing a new architecture.
 
-## Code Purpose Test (DNA skill)
+## Code Purpose Test (skill DNA)
 
-Untuk setiap tambahan non-trivial, tanya: **"What does this earn?"**
+For every non-trivial addition, ask: **"What does this earn?"**
 
-| Tambahan | Jawaban sah |
+| Addition | Valid answer |
 |---|---|
-| comment | informasi yang kode belum perlihatkan |
-| abstraction | boundary yang berarti |
-| dependency | kapabilitas nyata |
-| validation | invalid state yang benar-benar terjadi |
-| state | informasi yang harus bertahan |
-| effect | sinkronisasi dengan sistem eksternal |
-| wrapper | semantic boundary |
-| configuration | variabilitas aktual |
-| fallback | failure mode yang diperkirakan |
-| type | invariant yang compiler harus jaga |
+| comment | information the code does not already show |
+| abstraction | a boundary that means something |
+| dependency | a real capability |
+| validation | an invalid state that actually happens |
+| state | information that must persist |
+| effect | sync with an external system |
+| wrapper | a semantic boundary |
+| configuration | actual variability |
+| fallback | a failure mode you expect |
+| type | an invariant the compiler should enforce |
 
-Jawaban tanpa kebutuhan konkret ("for flexibility", "best practice", "just in case", "clean architecture", "future-proofing", "more robust", "better maintainability") = **AI-slop tell**. Drop atau rework, kecuali `sev: error`.
+Answers with no concrete need ("for flexibility", "best practice", "just in case", "clean architecture", "future-proofing", "more robust", "better maintainability") = **AI-slop tell**. Drop or rework, except `sev: error`.
 
-Kalau earning-nya bisa ditulis 1 baris dari *repo ini*, bentuk yang tidak ada di rata-rata adalah keputusan, bukan slop. Alasan tak bisa ditulis 1 baris → keputusan belum valid.
+If earning can be written in one line from *this repo*, a shape that is not in the average is a decision, not slop. If you cannot write the reason in one line, the decision is not valid yet.
 
-## Evaluator: pakai 3-layer core
+## Evaluator: use the core 3-layer
 
-Scan berurutan L1 → L2 → L3 (mekanisme core). Di kode:
+Scan L1 → L2 → L3 (core mechanism). In code:
 
-- **L1** (`det:true`): Comment Hygiene yang mesin bisa lihat (dekoratif, restate, narration, empty label, end marker, emoji).
-- **L2** (`det:true|false`): komentar over-explained, line-by-line, signature echo, stiff-loud.
-- **L3** (`det:false`): group diagnostik di bawah. Buktikan dari sibling/consumer/DSL yang ada. Diskusi, bukan linter. Kluster (mekanisme core) mengalahkan isolated tell.
+- **L1** (`det:true`): Comment Hygiene a machine can see (decorative, restate, narration, empty label, end marker, emoji).
+- **L2** (`det:true|false`): over-explained comments, line-by-line, signature echo, stiff-loud.
+- **L3** (`det:false`): diagnostic groups below. Prove from existing siblings/consumers/DSL. Discussion, not a linter. Cluster (core mechanism) beats isolated tell.
 
-## Bagian 1: Comment Hygiene
+## Part 1: Comment Hygiene
 
-Pola: komentar yang menambah nol
-
-| id | sev | det | src | tell | fix |
-|---|---|---|---|---|---|
-| `l1.comment.decorative-separator` | warning | true | AS | `// =====` + ALL CAPS label, box-drawing | Satu baris polos, atau hapus bila label tak menambah |
-| `l1.comment.restating-obvious` | warning | true | AS | "// Initialize variable" di atas `let count = 0` | Hapus, biarkan kode |
-| `l1.comment.workflow-narration` | warning | true | AS | "// Step 1: validate", "// First...", "// Finally..." | Hapus; kalau alur susah diikuti = masalah struktur |
-| `l1.comment.empty-label` | warning | true | AS | "// Main logic", "// Helper function", "// Important: please read" | Hapus kecuali membawa fakta spesifik |
-| `l1.comment.vague-todo` | warning | true | AS | "// TODO: Improve this", "// Add more validation" | Pertahankan hanya bila menamai task spesifik yang bisa dieksekusi |
-| `l1.comment.signature-echo` | warning | true | AS | JSDoc mengulang @param/@returns yang sudah jelas dari nama | Simplify/remove echo; pertahankan doc yang menjelaskan business rules/edge/assumption/alg/limitations/side-effects/API/security |
-| `l1.comment.decorative-emoji` | warning | true | AS | `// ✅ Validation`, `// 🚀 Performance` | Plain English atau hapus |
-| `l1.comment.end-marker` | warning | true | AS | `} // end if`, `# End of function` | Hapus; braket sudah mengakhiri blok |
-
-Pola: cara seharusnya terbaca
+Pattern: comments that add nothing
 
 | id | sev | det | src | tell | fix |
 |---|---|---|---|---|---|
-| `l2.comment.over-explained` | warning | false | AS | 4 baris menjelaskan fakta 1 baris (stub di PATH, release apa, apa yang rusak) | Potong ke info yang penting saja; jatuhkan issue number & rantai alasan |
-| `l2.comment.line-by-line` | warning | true | AS | Komentar tiap statement trivial | 1 komentar per blok logis, atau tidak sama sekali |
-| `l2.comment.stiff-loud` | warning | true | AS | "responsible for validating whether the supplied credentials are valid..." / `// MAIN LOGIC` caps | Kalimat natural developer: "// Validate credentials before issuing a token." |
+| `l1.comment.decorative-separator` | warning | true | AS | `// =====` + ALL CAPS label, box-drawing | One plain line, or delete if the label adds nothing |
+| `l1.comment.restating-obvious` | warning | true | AS | "// Initialize variable" above `let count = 0` | Delete; let the code stand |
+| `l1.comment.workflow-narration` | warning | true | AS | "// Step 1: validate", "// First...", "// Finally..." | Delete; if the flow is hard to follow, that is a structure problem |
+| `l1.comment.empty-label` | warning | true | AS | "// Main logic", "// Helper function", "// Important: please read" | Delete unless it carries a specific fact |
+| `l1.comment.vague-todo` | warning | true | AS | "// TODO: Improve this", "// Add more validation" | Keep only if it names a specific executable task |
+| `l1.comment.signature-echo` | warning | true | AS | JSDoc repeating @param/@returns already clear from names | Simplify/remove echo; keep docs that explain business rules/edge/assumption/alg/limitations/side-effects/API/security |
+| `l1.comment.decorative-emoji` | warning | true | AS | `// ✅ Validation`, `// 🚀 Performance` | Plain English or delete |
+| `l1.comment.end-marker` | warning | true | AS | `} // end if`, `# End of function` | Delete; the brace already ends the block |
 
-Bukan ban: pertahankan komentar yang menjelaskan business logic/intent, architectural decisions, security, performance, concurrency, protocol, API contracts, workarounds, edge cases & assumptions, licensing/legal.
+Pattern: how it should read
+
+| id | sev | det | src | tell | fix |
+|---|---|---|---|---|---|
+| `l2.comment.over-explained` | warning | false | AS | 4 lines explaining a 1-line fact (PATH stub, which release, what broke) | Cut to the useful info; drop issue numbers and reason-chains |
+| `l2.comment.line-by-line` | warning | true | AS | A comment on every trivial statement | 1 comment per logical block, or none |
+| `l2.comment.stiff-loud` | warning | true | AS | "responsible for validating whether the supplied credentials are valid..." / `// MAIN LOGIC` caps | Natural developer sentence: "// Validate credentials before issuing a token." |
+
+Not a ban: keep comments that explain business logic/intent, architectural decisions, security, performance, concurrency, protocol, API contracts, workarounds, edge cases & assumptions, licensing/legal.
 
 ```js
 // Stripe may retry webhook deliveries for up to three days.
 // Ignore duplicate events using the event ID.
 ```
 
-Nilai bukan panjang. Use the shortest comment that preserves the useful information. Length is a smell, not a violation.
+Value is not length. Use the shortest comment that preserves the useful information. Length is a smell, not a violation.
 
-## Bagian 2: Diagnostic groups (label, bukan linter)
+## Part 2: Diagnostic groups (labels, not a linter)
 
-Bingkai berpikir. Jangan mengarang `l3.code.*`. Temuan AFTER: `N. [group] <bukti sibling/consumer 1 baris>`.
+A thinking frame. Do not invent `l3.code.*`. AFTER finding: `N. [group] <sibling/consumer evidence in one line>`.
 
-| group | tell khas | bukti wajib sebelum flag |
+| group | typical tell | evidence required before flag |
 |---|---|---|
-| unnecessary | redundant guard, pointless variable, pass-through, wrapper tanpa fungsi | tunjuk consumer/state nyata yang membuatnya hidup, atau tidak ada |
-| abstraction | premature interface, one-use helper, factory tanpa kebutuhan, architecture cosplay | minimal 2 consumer asli sekarang, atau batas yang memang berubah di repo |
-| naming | processData, handleThing, resultData, utils/helper dumping ground | nama mengikuti vocab domain yang dipakai sibling |
-| defensive | null-check mustahil, validasi ganda, catch-and-rethrow, fallback-everything | type/API memungkinkan state itu; kegagalan memang expected |
-| pattern | pattern demi pattern, layer/service tanpa kerja, framework cargo cult | pola dipakai karena masalah memintanya, dan sibling sudah (atau belum) memakai |
-| error | error generik, swallowed error, console.log + rethrow, context destruction | error membawa konteks yang cukup untuk dipulihkan di permukaan ini |
+| unnecessary | redundant guard, pointless variable, pass-through, wrapper with no job | point to a real consumer/state that keeps it alive, or to its absence |
+| abstraction | premature interface, one-use helper, factory with no need, architecture cosplay | at least 2 real consumers now, or a boundary that actually changes in this repo |
+| naming | processData, handleThing, resultData, utils/helper dumping ground | names follow domain vocab siblings already use |
+| defensive | impossible null-check, double validation, catch-and-rethrow, fallback-everything | the type/API allows that state; the failure is actually expected |
+| pattern | pattern for its own sake, layer/service that does no work, framework cargo cult | the pattern exists because the problem asked, and siblings do (or do not) use it |
+| error | generic error, swallowed error, console.log + rethrow, context destruction | the error carries enough context to recover on this surface |
 
-Framework-spesifik (hooks, effects, type assertion, repository layer) = eksemplar di `../../references/good-code.md`, bukan aturan agnostik pack.
+Framework-specific (hooks, effects, type assertions, repository layer) = exemplars in `../../references/good-code.md`, not agnostic pack rules.
 
-Change Slop (cleanup/refactor/format di luar task; dependency/config yang tidak diminta) = Agent boundaries core, bukan group di sini.
+Change Slop (cleanup/refactor/format outside the task; unasked dependency/config) = core Agent boundaries, not a group here.
 
-Extract ke sibling karena task ini sudah punya consumer kedua = keputusan, bukan Change Slop.
+Extracting to a sibling because this task already has a second consumer = a decision, not Change Slop.
 
-## Bagian 3: Engineer Judgment
+## Part 3: Engineer Judgment
 
-Sebelum kode non-trivial, jawab **dua pertanyaan load-bearing** dari bukti repo (baca sibling, bukan proyeksi psikologi):
+Before non-trivial code, answer **two load-bearing questions** from repo evidence (read siblings, do not project maintainer psychology):
 
-1. Apa yang codebase ini sudah lakukan? (pola 2-3 sibling terdekat)
-2. Apa yang task ini benar-benar minta?
+1. What does this codebase already do? (patterns from the 2–3 nearest siblings)
+2. What does this task actually ask for?
 
-Lima sisanya hanya saat ragu. Jangan jadikan liturgi setiap diff:
+The other five only when in doubt. Do not make them a liturgy on every diff:
 
-3. Apa solusi koheren terkecil yang masih punya bentuk?
-4. Aku menambah ini karena masalahnya butuh, atau karena terlihat "good engineering"?
-5. Adakah primitive/pola existing yang bisa dipakai?
-6. Asumsi apa tentang kebutuhan masa depan? (tebakan masa depan ≠ earning)
-7. Apakah perubahan ini tak mengejutkan maintainer berpengalaman yang baca sibling yang sama?
+3. What is the smallest coherent solution that still has shape?
+4. Am I adding this because the problem needs it, or because it looks like "good engineering"?
+5. Is there an existing primitive/pattern to use?
+6. What am I assuming about future need? (a future guess ≠ earning)
+7. Would this surprise an experienced maintainer who reads the same siblings?
 
-Keraguan → tanya user, jangan default ke "lebih aman menambah". Perubahan pun punya biaya. Jangan default ke "lebih aman menghapus bentuk" juga.
+Doubt → ask the user. Do not default to "safer to add". Change has cost. Do not default to "safer to delete shape" either.
 
-## Checklist good-code
+## good-code checklist
 
-- [ ] Keputusan, bukan pelengkapan pola; earning tiap tambahan non-trivial tertulis 1 baris dari repo ini
-- [ ] Tidak over-sterilize: bentuk yang earning tetap ada
-- [ ] Dua pertanyaan load-bearing dijawab dari sibling, bukan dari buku
-- [ ] L3 group dibuktikan dari repo; temuan AFTER memakai [group] + bukti, bukan id palsu
-- [ ] Comment Hygiene bersih; komentar = shortest yang menjaga info; panjang = smell
-- [ ] Diff scope: hanya yang diminta task, kecuali extract ke consumer kedua yang sudah ada di blast radius
+- [ ] Decision, not pattern-completion; earning of each non-trivial addition is one line from this repo
+- [ ] Not over-sterilized: earning shape remains
+- [ ] Two load-bearing questions answered from siblings, not from a book
+- [ ] L3 groups proven from the repo; AFTER findings use [group] + evidence, not fake ids
+- [ ] Comment Hygiene clean; comments = shortest that keep the info; length = smell
+- [ ] Diff scope: only what the task asked, except extract to a second consumer already in blast radius
 - [ ] Delivery Gate core PASS

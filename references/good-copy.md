@@ -1,30 +1,30 @@
-# good-copy — Bentuk keputusan
+# good-copy — Decision shapes
 
-Bukan katalog rule. Pasangan: pola dilengkapi vs keputusan di produk ini. Agent meniru bentuk berpikir.
+Not a rule catalog. Pairs: completed pattern vs a decision in this product. The agent copies the shape of thinking.
 
-Temuan AFTER: kluster, atau `id` honesty (`sev: error`). Jangan gagalkan satu dash atau satu kata.
+AFTER findings: a cluster, or an honesty `id` (`sev: error`). Do not fail one dash or one word.
 
 ## Specificity
 
-**Pola.** Klaim besar, kejadian nol.
+**Pattern.** Big claim, zero event.
 
 ```text
 Manage your workflow efficiently.
 Seamless collaboration for modern teams.
 ```
 
-**Keputusan.** Kebenaran konkret terkecil.
+**Decision.** The smallest concrete truth.
 
 ```text
 See every open invoice, who owes it, and when it's due.
 Edit the same contract without emailing new versions.
 ```
 
-`seamless` pada "seamless migration (no downtime)" boleh: katanya menamai kejadian. `seamless` pada "seamless collaboration" tidak.
+`seamless` in "seamless migration (no downtime)" is allowed: the word names an event. `seamless` in "seamless collaboration" is not.
 
 ## Does this surface need copy?
 
-**Pola.** Slot empty-state diisi karena slot ada.
+**Pattern.** Empty-state slot filled because the slot exists.
 
 ```text
 No items yet.
@@ -33,7 +33,7 @@ Ready to take control of your finances?
 [Create invoice]
 ```
 
-**Keputusan.** Status nyata. Sering selesai di satu kalimat.
+**Decision.** Real status. Often done in one sentence.
 
 ```text
 No unpaid invoices.
@@ -41,7 +41,7 @@ No unpaid invoices.
 
 ## Surface overload
 
-**Pola.** Headline + sub + helper + tooltip bilang hal yang sama.
+**Pattern.** Headline + sub + helper + tooltip saying the same thing.
 
 ```text
 Unpaid invoices
@@ -51,40 +51,40 @@ Tip: You can also create an invoice.
 [Learn more]
 ```
 
-**Keputusan.** Satu pesan, satu aksi.
+**Decision.** One message, one action.
 
 ```text
-Invoice yang belum dibayar
-3 invoice · Rp12,4 juta
-[Lihat invoice]
+Unpaid invoices
+3 invoices · $12,400
+[View invoices]
 ```
 
-## Capability inflation (bukan significance-inflate)
+## Capability inflation (not significance-inflate)
 
 Significance-inflate = "the future of accounting".
-Capability-inflate = bahasa platform untuk satu operasi.
+Capability-inflate = platform language for one operation.
 
-**Pola.**
+**Pattern.**
 
 ```text
 Your intelligent document automation platform.
 ```
 
-**Keputusan.** (produk = upload PDF, extract fields)
+**Decision.** (product = upload PDF, extract fields)
 
 ```text
 Upload a PDF. We'll pull out the fields you need.
 ```
 
-## False agency vs subject benda
+## False agency vs inanimate subject
 
-**Pola.** Kapabilitas manusia dipasang ke produk.
+**Pattern.** Human capability bolted onto the product.
 
 ```text
 Our platform understands your business.
 ```
 
-**Keputusan.** Subjek benda yang fungsional tetap.
+**Decision.** Functional inanimate subjects stay.
 
 ```text
 The graph shows revenue by month.
@@ -93,14 +93,14 @@ The dashboard opens on today's queue.
 
 ## Evasive passive vs status
 
-**Pola.** Aktor disembunyikan saat tanggung jawab ada.
+**Pattern.** Actor hidden when responsibility exists.
 
 ```text
 Your account was suspended.
 The decision was made to update the policy.
 ```
 
-**Keputusan.** Status tanpa pelaku yang relevan dibiarkan. Evasif diberi pelaku dan alasan.
+**Decision.** Status with no relevant actor stays. Evasive copy gets an actor and a reason.
 
 ```text
 Payment failed.
@@ -110,7 +110,7 @@ We suspended your account because of unpaid invoices.
 
 ## Action / CTA
 
-**Pola.** Template yang tidak menamai langkah berikutnya.
+**Pattern.** Template that does not name the next step.
 
 ```text
 Get Started
@@ -118,7 +118,7 @@ Learn More
 Submit
 ```
 
-**Keputusan.** Konsekuensi jika user perlu prediksi. Kontrol jendela tetap pendek.
+**Decision.** Consequence when the user needs to predict. Window chrome stays short.
 
 ```text
 Upload contract
@@ -127,9 +127,9 @@ Save
 Close
 ```
 
-## Em dash sebagai kebiasaan
+## Em dash as habit
 
-Satu `—` bukan pengakuan. Kluster dash sebagai transisi default, tanpa sampel user yang memakainya = ganti dengan kalimat yang berdiri sendiri. Sampel user yang memakai dash: pertahankan frekuensinya.
+One `—` is not a conviction. A cluster of dashes as the default transition, with no user sample that uses them = replace with sentences that stand alone. User sample that uses dashes: keep the frequency.
 
 ## Voice
 
@@ -139,11 +139,11 @@ User:
 gue bikin ini karena males ngurus invoice satu-satu
 ```
 
-Pola "professional":
+"Professional" pattern:
 
 ```text
 We empower businesses to streamline their invoicing workflows
 through a seamless and intuitive experience.
 ```
 
-Keputusan: grammar boleh dirapikan; identitas jangan dimatikan. Professional ≠ sanitized.
+Decision: grammar may be tidied; identity must not die. Professional ≠ sanitized.

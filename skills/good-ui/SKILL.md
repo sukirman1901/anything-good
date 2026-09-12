@@ -1,99 +1,100 @@
 ---
 name: good-ui
 description: >-
-  UI/visual skill dari pack anything-good: every element should earn its space.
-  Evaluator 3-layer + layout mobile + states + app/dashboard + motion. Cluster
-  komposisi mengalahkan isolated tell. Use when building, restyling, or auditing
-  UI (termasuk "rapihin UI", "buat lebih bagus", "audit UI", "terlalu generik",
-  "design"). Katalog: references/good-ui.md. Merujuk core anything-good.
+  UI/visual skill from the anything-good pack: every element should earn its
+  space. 3-layer evaluator + mobile layout + states + app/dashboard + motion.
+  Composition clusters beat isolated tells. Use when building, restyling, or
+  auditing UI (including "rapihin UI", "buat lebih bagus", "audit UI", "terlalu
+  generik", "design"). Catalog: references/good-ui.md. References anything-good
+  core.
 ---
 
 # Good UI (anything-good)
 
-Bagian dari pack anything-good. Core (`../../SKILL.md`) memegang DNA, cluster, purpose test, Delivery Gate, dials. Skill ini membawa aturan domain UI. Katalog: `../../references/good-ui.md`.
+Part of the anything-good pack. Core (`../../SKILL.md`) holds DNA, cluster, purpose test, Delivery Gate, dials. This skill holds UI-domain rules. Catalog: `../../references/good-ui.md`.
 
-**Every element should earn its space.** Tes, bukan izin mengosongkan sampai steril. Removal adalah alat komposisi terkuat: "should this exist at all?"
+**Every element should earn its space.** A test, not a license to empty the page until sterile. Removal is the strongest composition tool: "should this exist at all?"
 
-## Kapan dipakai
+## When to use
 
-- Sebelum menyudahi build UI (component, page, section, form, card grid)
-- Saat audit/"rapihin UI"/"buat lebih bagus"
-- Saat output "tampak benar" tapi terasa template (kluster composition.*)
+- Before finishing a UI build (component, page, section, form, card grid)
+- On audit / "rapihin UI" / "make it better"
+- When output "looks correct" but feels like a template (composition.* cluster)
 
-## Kapan dilewati
+## When to skip
 
-- Slop logika kode (useEffect, type lies) → `good-code`
+- Code-logic slop (useEffect, type lies) → `good-code`
 - Copy tone / empty-state / error copy → `good-copy`
-- Kontras, keyboard, fokus, zoom → `a11y` (Hard-forever; jangan diulang sebagai style rule)
-- Frame-by-frame motion → MOTION dial core
+- Contrast, keyboard, focus, zoom → `a11y` (Hard-forever; do not repeat as a style rule)
+- Frame-by-frame motion → MOTION dial in core
 
 ## Evaluator
 
-1. **Collect intent.** L1 tak butuh intent. L3 (composition, emphasis, removal) butuh product intent; kalau tidak ada, TANYA.
-2. **Scan by layer** di `../../references/good-ui.md` (L1 → L2 → L3). Isolated tell bukan pengakuan.
+1. **Collect intent.** L1 does not need intent. L3 (composition, emphasis, removal) needs product intent; if missing, ASK.
+2. **Scan by layer** in `../../references/good-ui.md` (L1 → L2 → L3). An isolated tell is not a conviction.
 3. **Rank** (`sev`): error (a11y + mechanical craft) → warning → suggestion.
-4. **Fix** rule + earning 1 baris. Angka grid di katalog = default, bukan hukum.
-5. **Re-scan.** Waiver disebut nama.
+4. **Fix** the rule + one line of earning. Grid numbers in the catalog are defaults, not law.
+5. **Re-scan.** Name any waiver.
 
-## MUST (lantai, bukan style guide)
+## MUST (floor, not a style guide)
 
 | Rule | Detail |
 |------|--------|
-| **Earn its space** | Tiap elemen punya alasan 1 baris. Slot kosong bukan alasan menambah kartu/badge/bento |
-| **Contrast & fokus** | Rujuk `a11y`. Jangan eyeball. `outline: none` tanpa pengganti = error |
-| **8-pt spacing** | `gap`/`padding` di ladder 4–8pt. Arbitrary `13px`/`22px` = craft defect, bukan identitas brand |
-| **Overflow & tap** | Tanpa overflow horizontal; tap ≥44px; mobile = reflow (stack/scale/reorder), bukan desktop yang disusutkan |
-| **States** | Setiap view data: empty/loading/error. Loading berteks; error apa yang rusak + cara lanjut. Copy-nya: `good-copy` |
-| **Data jujur** | Angka/feed/avatar nyata atau placeholder berlabel. Cell kosong tetap kosong |
-| **Motion** | Sesuai MOTION dial; tanpa pulse/loop abadi; `prefers-reduced-motion` (rujuk a11y). Gerak punya purpose tertulis |
-| **Satu cahaya, hierarki tombol** | Shadow satu arah. Primary / secondary / tertiary. State hover/pressed/disabled/loading ada |
-| **Komposisi = kluster** | Template stack (badge→gradient→2 CTA→3 cards→bento→CTA banner) diflag sebagai kluster, bukan tiap beat terpisah. Pecah ≥1 beat dengan bentuk produk, atau waive dengan intent |
+| **Earn its space** | Each element has a one-line reason. An empty slot is not a reason to add a card/badge/bento |
+| **Contrast & focus** | Defer to `a11y`. Do not eyeball. `outline: none` with no replacement = error |
+| **8-pt spacing** | `gap`/`padding` on a 4–8pt ladder. Arbitrary `13px`/`22px` is a craft defect, not brand identity |
+| **Overflow & tap** | No horizontal overflow; tap ≥44px; mobile = reflow (stack/scale/reorder), not shrunk desktop |
+| **States** | Every data view: empty/loading/error. Loading has text; errors name what broke + how to continue. Copy: `good-copy` |
+| **Honest data** | Real numbers/feeds/avatars or labeled placeholders. Empty cells stay empty |
+| **Motion** | Follow the MOTION dial; no endless pulse/loop; `prefers-reduced-motion` (see a11y). Motion has a written purpose |
+| **One light, button hierarchy** | Shadows one direction. Primary / secondary / tertiary. Hover/pressed/disabled/loading exist |
+| **Composition = cluster** | Template stack (badge→gradient→2 CTAs→3 cards→bento→CTA banner) is flagged as a cluster, not beat-by-beat. Break ≥1 beat with a product shape, or waive with intent |
 
-Bukan MUST (default, bisa dilawan DESIGN.md / sibling):
+Not MUST (defaults, overridable by DESIGN.md / siblings):
 
-- Container 1200–1240 / 343 / 12-col gutter 20px: tangga awal, bukan error
-- `#000`/`#fff`: suggestion; exception brand, high-contrast, art direction (katalog `color.pure-black`)
-- Form single-column: heuristik (nama depan+belakang boleh bersebelahan di desktop)
-- Dropdown 2–4 opsi → chips: heuristik, bukan hukum
-- ≤2 typefaces: mulai dari situ; brand boleh lebih jika DESIGN.md bilang
+- Container 1200–1240 / 343 / 12-col 20px gutter: starting ladder, not an error
+- `#000`/`#fff`: suggestion; exceptions for brand, high-contrast, art direction (catalog `color.pure-black`)
+- Single-column forms: heuristic (first+last name may sit side by side on desktop)
+- Dropdown with 2–4 options → chips: heuristic, not law
+- ≤2 typefaces: start there; brand may use more if DESIGN.md says so
 
-CTA: namai aksi/konsekuensi (`good-copy`). Bukan "Click here". Bukan "Join the Club!" kecuali itu voice produk.
+CTA: name the action/consequence (`good-copy`). Not "Click here". Not "Join the Club!" unless that is the product voice.
 
 ## Pattern mini-table
 
 | Detection marker | Fix | Layer |
 |---|---|---|
-| `gap: 13px; padding: 22px;` | Nilai 8pt terdekat | L1 |
-| `#000`/`#fff` penuh tanpa brand/HCA | Tinted neutral, atau keep jika DESIGN.md | L3 |
-| `rounded-3xl` sama dalam-luar | Inner radius < outer | L1 |
-| `outline: none` tanpa replacement | focus-visible ≥3:1 (`a11y`) | L1 |
-| "Click here"/"Learn More" kosong | Konsekuensi klik (`good-copy`) | L2 |
-| Teks di atas foto terang | Scrim; titik terparah (`a11y`) | L1 |
-| 1 toast error di atas | Inline di lokasi + alasan | L2 |
-| Scroll dalam kartu | Potong + "See more", atau jangan kartu | L2 |
-| Baris baca terlalu lebar | `max-width` ~60–70ch | L1 |
-| Kluster SSA stack | Pecah ≥1 beat; isolated card/badge biasa | L3 |
-| Setiap section = heading+subtitle+cards | Variasi; section boleh drop element | L3 |
-| Kartu untuk yang whitespace bisa group | Divider/whitespace | L3 |
-| Stat card `12,483 / 94.2%` tanpa sumber | Nyata atau `[REAL DATA]` | L2 |
-| Feed "Sarah Chen updated..." | Event nyata atau delete | L2 |
+| `gap: 13px; padding: 22px;` | Nearest 8pt value | L1 |
+| `#000`/`#fff` full-strength without brand/HCA | Tinted neutral, or keep if DESIGN.md | L3 |
+| `rounded-3xl` same inside and out | Inner radius < outer | L1 |
+| `outline: none` without replacement | focus-visible ≥3:1 (`a11y`) | L1 |
+| Empty "Click here"/"Learn More" | Click consequence (`good-copy`) | L2 |
+| Text on a bright photo | Scrim; worst point (`a11y`) | L1 |
+| One error toast at the top | Inline at the location + reason | L2 |
+| Scroll inside a card | Cut + "See more", or do not use a card | L2 |
+| Reading line too wide | `max-width` ~60–70ch | L1 |
+| SSA stack cluster | Break ≥1 beat; an isolated card/badge is normal | L3 |
+| Every section = heading+subtitle+cards | Vary; a section may drop elements | L3 |
+| Cards where whitespace can group | Divider/whitespace | L3 |
+| Stat card `12,483 / 94.2%` with no source | Real or `[REAL DATA]` | L2 |
+| Feed "Sarah Chen updated..." | Real event or delete | L2 |
 
-Katalog penuh: `../../references/good-ui.md`. Copy di katalog (`copy.*`) tunduk pada `good-copy`.
+Full catalog: `../../references/good-ui.md`. Copy rules in the catalog (`copy.*`) defer to `good-copy`.
 
 ## Agent boundaries
 
-- **May decide:** urutan fix dalam layer, token naming, nilai 8pt, beat mana yang dipecah, grid ladder vs DESIGN.md.
-- **Must not:** default purple/indigo; perlakukan L3 sebagai linter; restruktur tanpa intent; skip rule karena "kelihatan fine"; hukuman isolated tell; merusak a11y demi estetika.
-- **Stop & ask:** composition/emphasis tanpa intent; copy L3 butuh sampel (`good-copy`); konflik produk vs a11y (a11y menang).
+- **May decide:** fix order within a layer, token names, 8pt values, which beat to break, grid ladder vs DESIGN.md.
+- **Must not:** default purple/indigo; treat L3 as a linter; restructure without intent; skip a rule because it "looks fine"; punish isolated tells; harm a11y for aesthetics.
+- **Stop & ask:** composition/emphasis without intent; L3 copy needs a sample (`good-copy`); product vs a11y conflict (a11y wins).
 
-## Checklist good-ui
+## good-ui checklist
 
-- [ ] Setiap elemen earning 1 baris; removal dipertimbangkan
-- [ ] L1 craft: 8pt, overflow, tap, radius, satu cahaya, fokus (via a11y)
-- [ ] Kontras dihitung di `a11y`, bukan diulang sebagai selera warna
-- [ ] States + data jujur
-- [ ] Kluster komposisi ditamai atau di-waive; isolated card/badge tidak
-- [ ] Grid/pixel katalog = default, bukan gagal deliverable
+- [ ] Every element earns in one line; removal considered
+- [ ] L1 craft: 8pt, overflow, tap, radius, one light, focus (via a11y)
+- [ ] Contrast computed in `a11y`, not repeated as color taste
+- [ ] States + honest data
+- [ ] Composition cluster named or waived; isolated card/badge not
+- [ ] Catalog grid/pixels = default, not a failed deliverable
 - [ ] Motion + reduced-motion
-- [ ] Copy permukaan di `good-copy`
+- [ ] Surface copy in `good-copy`
 - [ ] Close: re-scan; gate core PASS

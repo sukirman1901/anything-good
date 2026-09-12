@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""contrast.py — hitung rasio kontras WCAG dan verdict teks normal/besar.
+"""contrast.py — compute WCAG contrast ratio and normal/large text verdict.
 
 Usage:
     python3 contrast.py "#FFFFFF" "#777777"
     # normal text: FAIL (4.48 < 4.5)
     # large text:  PASS (4.48 >= 3.0)
 
-Dua argumen hex (#RRGGBB), urutan bebas; fungsi memilih yang lebih terang
-sebagai foreground luminance. Exit 0 normal; 1 bila input tak valid.
+Two hex arguments (#RRGGBB), order free; the function treats the lighter
+as foreground luminance. Exit 0 on success; 1 on invalid input.
 """
 import re
 import sys
@@ -16,7 +16,7 @@ import sys
 def parse_hex(value: str) -> tuple[int, int, int]:
     m = re.fullmatch(r"#?([0-9a-fA-F]{6})", value.strip())
     if not m:
-        raise ValueError(f"format hex tak valid: {value}")
+        raise ValueError(f"invalid hex format: {value}")
     h = m.group(1)
     return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))  # type: ignore[return-value]
 

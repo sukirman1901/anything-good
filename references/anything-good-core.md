@@ -1,117 +1,118 @@
 # anything-good Core — Technical Reference
 
-Referensi mekanisme yang dirujuk core `SKILL.md` dan semua skill. Skill TIDAK menduplikasi isi file ini; mereka merujuk `id` rule dan nomor mekanisme.
+Mechanism referenced by core `SKILL.md` and every skill. Skills do NOT copy this file; they cite rule `id`s and mechanism numbers.
 
-## 1. Model evaluator 3-layer
+## 1. 3-layer evaluator
 
-Tiga layer dipakai semua skill. `sev` `error` selalu fix (a11y/mechanical); `warning` fix kecuali di-waive (waiver disebut nama); `suggestion` butuh konteks produk.
+All skills use three layers. `sev` `error` always fix (a11y/mechanical); `warning` fix unless waived (name the waiver); `suggestion` needs product context.
 
-| Layer | Deteksi | `sev` khas | `det` |
+| Layer | Detection | Typical `sev` | `det` |
 |---|---|---|---|
-| L1 Mechanical | bisa dicek mesin (regex/kl); kontras, spacing 8pt, tap 40-44px, komentar yang menyalin kode | error | true |
-| L2 Structural | pola struktur; hierarki CTA, kartu, alur paragraf, struktur pesan error, komentar restate | warning | false/true |
-| L3 Contextual | butuh intent produk/repo; komposisi anti-template, voice copy, keputusan kode berbukti sibling, konteks a11y | suggestion | false |
+| L1 Mechanical | machine-checkable (regex/calc); contrast, 8pt spacing, tap 40-44px, comments that copy code | error | true |
+| L2 Structural | structure; CTA hierarchy, cards, paragraph flow, error-message structure, restating comments | warning | false/true |
+| L3 Contextual | needs product/repo intent; anti-template composition, copy voice, sibling-backed code decisions, a11y context | suggestion | false |
 
-Urutan fix selalu L1 → L2 → L3.
+Fix order is always L1 → L2 → L3.
 
-## 2. Metadata rule
+## 2. Rule metadata
 
-Canonical encoding (baris tabel di skill adalah bentuk ringkas ini). **Pengecualian:** diagnostic groups good-code L3 (`unnecessary`, `abstraction`, `naming`, `defensive`, `pattern`, `error`) adalah label, bukan `id` rule. Jangan mengarang `l3.code.*`.
+Canonical encoding (table rows in skills are the compact form). **Exception:** good-code L3 diagnostic groups (`unnecessary`, `abstraction`, `naming`, `defensive`, `pattern`, `error`) are labels, not rule `id`s. Do not invent `l3.code.*`.
 
 ```yaml
-id: layer.group.name        # mis. accessibility.text-contrast, l2.hierarchy.cta
+id: layer.group.name        # e.g. accessibility.text-contrast, l2.hierarchy.cta
 sev: error                   # error | warning | suggestion
-det: true                    # true = bisa dicek mesin
-src: AS                      # sumber: B1=UI 3.0, B2=50 Do's&Don'ts, AS=anti-slop (diadaptasi)
-rule: <kalimat aturan>
-exceptions: [ ... ]          # kasus yang diizinkan
+det: true                    # true = machine-checkable
+src: AS                      # source: B1=UI 3.0, B2=50 Do's&Don'ts, AS=anti-slop (adapted)
+rule: <rule sentence>
+exceptions: [ ... ]          # allowed cases
 ```
 
 ## 3. Purpose test + DNA
 
-1. Ambil teknik/element yang dipakai.
-2. Tanya: "Apa yang ini layani?"
-3. Jawaban namai tujuan (hierarchy/identity/readability) → tulis alasan 1 baris → tetap.
-4. Jawaban "biar kelihatan AI" / "biar aman" → drop atau rework (kecuali `sev: error`).
-5. Alasan tak bisa ditulis 1 baris → keputusan belum valid, revisit.
+1. Take the technique/element in use.
+2. Ask: "What does this serve?"
+3. If the answer names a purpose (hierarchy/identity/readability) → write a one-line reason → keep.
+4. If the answer is "to look AI" / "to be safe" → drop or rework (except `sev: error`).
+5. If the reason cannot be written in one line → the decision is not valid yet; revisit.
 
-Bentuk domain (core `SKILL.md`): code earn its place; copy earn attention; ui earn its space. Jawaban sah terikat produk/repo ini, bukan "best practice". A11y tidak masuk tes earning.
+Domain forms (core `SKILL.md`): code earn its place; copy earn attention; ui earn its space. Valid answers are bound to this product/repo, not "best practice". A11y is not an earning test.
 
-**Professional ≠ sanitized.** Bentuk yang earning (voice, tipe domain, komposisi berani) tetap.
+**Professional ≠ sanitized.** Earning shape (voice, domain types, bold composition) stays.
 
 ## 3b. Cluster > isolated tell
 
-Satu marker bukan pengakuan, kecuali `sev: error` (fabrikasi, a11y). Temuan = kluster tell tanpa alasan produk. AFTER: sebut kluster, jangan nomor terpisah untuk tiap dash/kartu/helper.
+One marker is not a conviction, except `sev: error` (fabrication, a11y). A finding is a cluster of tells with no product reason. AFTER: name the cluster; do not number each dash/card/helper separately.
 
-## 4. Dua usage mode
+## 4. Two usage modes
 
-- **DURING:** aturan diterapkan saat menulis; selesai = Delivery Gate PASS ber-evidence.
-- **AFTER:** audit. Tulis temuan bernomor di `anti-slop/audit-NNN-YYYY-MM-DD.md`.
-  - L1/L2 (punya `id`): `N. [id rule] <deskripsi 1 baris> (sev: X)`.
-  - L3 good-code (label): `N. [group] <bukti sibling/consumer 1 baris>`. Jangan mengarang id.
-  - Prioritas ikut `sev` bila ada: error=HIGH, warning=MEDIUM, suggestion=LOW. Tanpa sev (group L3) = diskusi, user pilih. Hanya nomor terpilih yang difix. Lapor follow-up.
+- **DURING:** rules apply while writing; done = Delivery Gate PASS with evidence.
+- **AFTER:** audit. Write numbered findings in `anti-slop/audit-NNN-YYYY-MM-DD.md`.
+  - L1/L2 (has `id`): `N. [id rule] <one-line description> (sev: X)`.
+  - L3 good-code (label): `N. [group] <sibling/consumer evidence in one line>`. Do not invent ids.
+  - Priority follows `sev` when present: error=HIGH, warning=MEDIUM, suggestion=LOW. No sev (L3 groups) = discussion, user picks. Only selected numbers get fixed. Report follow-up.
 
-## 5. Delivery Gate (4 blok)
+## 5. Delivery Gate (4 blocks)
 
-### Blok 1 — Hard Gate (semua jawaban harus NO)
-- [ ] Ada overflow horizontal / teks keluar kontainer / layout pecah di mobile
-- [ ] Ada angka/statistik tanpa sumber (10K+ users, 99.9% uptime, dst)
-- [ ] Ada testimoni fiktif (avatar AI, nama acak, jabatan acak)
-- [ ] Ada asset visual dibuat tanpa instruksi & tanpa placeholder jujur (logo, avatar, statistik, nav)
-- [ ] Ada navbar link ke section yang tidak ada
-- [ ] Ada teks kontras < AA (normal 4.5:1, besar 18px+ 3:1) — pakai `skills/a11y/contrast.py`
-- [ ] Ada tombol/dropdown/form tanpa perilaku nyata & tanpa `// TODO` + label
-- [ ] Ada view data tanpa state empty/loading/error
-- [ ] FAQ menampung pertanyaan template tak relevan produk
-- [ ] Tak bisa dipakai keyboard (Tab logis, Enter/Space, Escape) / tanpa fokus terlihat
-- [ ] Fitur ditambah via script yang rewrite source/CSS (string patch)
-- [ ] Ada theme toggle dengan satu mode rusak
-- [ ] App tidak di-run/build atau tanpa catatan click-through tiap element
-- [ ] Ada klaim keamanan/kepatuhan/performans dibuat-buat
-- [ ] Dibangun tanpa arah & tidak dilabel "draft tanpa arah" (dials 1/1/1)
-- [ ] Ada konten bergaya realistis yang di-fabricate (nama fiktif, feed kecil, angka palsu)
+### Block 1 — Hard Gate (every answer must be NO)
+- [ ] Horizontal overflow / text escaping its container / layout broken on mobile
+- [ ] Unsourced numbers/stats (10K+ users, 99.9% uptime, etc.)
+- [ ] Fictional testimonials (AI avatars, random names, random titles)
+- [ ] Visual assets made with no instruction and no honest placeholder (logo, avatar, stats, nav)
+- [ ] Navbar links to a section that does not exist
+- [ ] Text contrast below AA (normal 4.5:1, large 18px+ 3:1) — use `skills/a11y/contrast.py`
+- [ ] Button/dropdown/form with no real behavior and no `// TODO` + label
+- [ ] Data view without empty/loading/error states
+- [ ] FAQ holding template questions irrelevant to the product
+- [ ] Not usable from keyboard (logical Tab, Enter/Space, Escape) / no visible focus
+- [ ] Features added via a script that rewrites source/CSS (string patch)
+- [ ] Theme toggle with one mode broken
+- [ ] App not run/built, or no click-through notes per element
+- [ ] Made-up security/compliance/performance claims
+- [ ] Built with no direction and not labeled "draft without direction" (dials 1/1/1)
+- [ ] Realistic-looking fabricated content (fictional names, tiny feeds, fake numbers)
 
-### Blok 2 — Purpose-Gate
-- [ ] Gradient/glow/glass/shadow/kartu/iklan-generik/anima/ilustrasi default tanpa tujuan tertulis → FAIL
-- [ ] Ikon generik (sparkle/star/magic/lightning/diamond/orb/robot) atau ikon-library-look tanpa relevansi tertulis → FAIL
-- [ ] Monospace besar / label uppercase tracking lebar / tipe tanpa alasan brand → FAIL
+### Block 2 — Purpose Gate
+- [ ] Gradient/glow/glass/shadow/card/generic-ad/animation/illustration as a default with no written purpose → FAIL
+- [ ] Generic icons (sparkle/star/magic/lightning/diamond/orb/robot) or icon-library look with no written relevance → FAIL
+- [ ] Large monospace / wide-tracked uppercase labels / type with no brand reason → FAIL
 
-### Blok 3 — Liveliness (semua YES)
-- [ ] Dials dideklarasikan & hasil konsisten (RHYTHM 3 tapi section seragam = FAIL)
-- [ ] Satu focal point per screen
-- [ ] Whitespace struktural (bukan sisa)
-- [ ] Satu accent sadar (nol = steril; di mana-mana = slop)
-- [ ] Ada identity motif (pola/gesture/tipe suara spesifik berulang)
+### Block 3 — Liveliness (every answer YES)
+- [ ] Dials declared and the result matches (RHYTHM 3 but uniform sections = FAIL)
+- [ ] One focal point per screen
+- [ ] Structural whitespace (not leftover)
+- [ ] One conscious accent (zero = sterile; everywhere = slop)
+- [ ] An identity motif (a specific repeating pattern/gesture/type voice)
 
-### Blok 4 — Craftsmanship C-1..C-5
-- [ ] C-1 Intentionality: tidak ada keputusan dengan alasan "default AI"
-- [ ] C-2 Functional completeness: tak ada element yang "berbuat" tapi tidak berbuat
-- [ ] C-3 Content-driven composition: tak ada section pengisi template
-- [ ] C-4 Resilience: tahan di semua state/theme/breakpoint/tanpa mouse
-- [ ] C-5 Evidence over claims: klaim nyata/verifiable atau tidak ditampilkan
+### Block 4 — Craftsmanship C-1..C-5
+- [ ] C-1 Intentionality: no decision whose reason is "AI default"
+- [ ] C-2 Functional completeness: no element that "does" something but does not
+- [ ] C-3 Content-driven composition: no template-filler sections
+- [ ] C-4 Resilience: holds in all states/themes/breakpoints/without a mouse
+- [ ] C-5 Evidence over claims: claims are real/verifiable or not shown
 
-Ada satu YES di Blok 1/2/4 (atau NO di Blok 3) → jangan deliver.
+Any YES in Blocks 1/2/4 (or NO in Block 3) → do not deliver.
 
 ## 6. Dials & Design Read
 
 | Dial | 1 Calm | 2 Balanced | 3 Bold |
 |---|---|---|---|
 | ENERGY | linear, GOV.UK | Stripe, Vercel | Awwwards, agency |
-| RHYTHM | grid seragam | konsisten + beberapa break | asimetris, campur |
+| RHYTHM | uniform grid | consistent + a few breaks | asymmetric, mixed |
 | MOTION | hover only | scroll-reveal, transition | parallax, pin, choreography |
 
-Design Read satu baris sebelum generate (lihat core SKILL.md). Tanpa arah → label "draft tanpa arah" + dials 1/1/1.
+One-line Design Read before generate (see core SKILL.md). No direction → label "draft without direction" + dials 1/1/1.
 
-## 7. Aksesibilitas = Hard-forever
+## 7. Accessibility = Hard-forever
 
-Kontras, keyboard, fokus, states, dan zoom adalah `sev: error` di L1. Purpose test TIDAK PERNAH menurunkan standar ini. Jika konflik produk vs aksesibilitas, aksesibilitas menang dan dicatat. `prefers-reduced-motion` dihormati bila ada gerak; Dial 3 bukan izin mengabaikannya.
+Contrast, keyboard, focus, states, and zoom are `sev: error` at L1. The purpose test NEVER lowers this bar. If product conflicts with accessibility, accessibility wins and that is recorded. Honor `prefers-reduced-motion` when there is motion; Dial 3 is not permission to ignore it.
 
 ## 8. Path map
 
-| Skill | SKILL.md | Referensi |
+| Skill | SKILL.md | Reference |
 |---|---|---|
 | core | `SKILL.md` | `references/anything-good-core.md` |
 | good-ui | `skills/good-ui/SKILL.md` | `references/good-ui.md` |
 | good-copy | `skills/good-copy/SKILL.md` | `references/good-copy.md` |
 | good-code | `skills/good-code/SKILL.md` | `references/good-code.md` |
 | a11y | `skills/a11y/SKILL.md` | `skills/a11y/contrast.py` |
+| good-ux (not a skill) | — | `references/good-ux.md` |
