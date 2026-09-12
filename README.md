@@ -22,13 +22,21 @@ skills/
 DESIGN.schema.md         # design-direction template
 ```
 
-## Install (opencode)
+## Install
+
+Works with Cursor, Claude Code, OpenCode, Codex, Copilot, and other agents the [skills CLI](https://github.com/vercel-labs/skills) supports.
 
 ```bash
-ln -sfn /Users/aaa/Documents/Developer/Skills/anything-good "$HOME/.config/opencode/skills/anything-good"
+npx skills add sukirman1901/anything-good
 ```
 
-Skills are detected via frontmatter `description`. Other agents: copy the skill folder to whatever path that agent reads.
+The CLI detects installed agents. Global (all projects):
+
+```bash
+npx skills add sukirman1901/anything-good -g
+```
+
+Skills are detected via frontmatter `description`.
 
 ## How to use
 
