@@ -23,6 +23,8 @@ Bagian dari pack anything-good. Core (`../../SKILL.md`) memegang mekanisme. Skil
 
 Komentar berharga bila menjelaskan hal yang kode belum perlihatkan: alasan, konstrain, perilaku tak-obvious. Value adalah informasi, bukan panjang.
 
+Purpose test (core `../../SKILL.md`): tiap komentar dijawab "apa yang ini layani?" Jawaban namai tujuan (konteks, peringatan, asumsi) → tulis alasan 1 baris → tetap. Jawaban "biar kelihatan AI" / "biar aman" → drop. Menulis untuk keberadaan diri = noise.
+
 ## Pola: Komentar yang menambah nol
 
 | id | sev | det | src | tell | fix |
@@ -61,6 +63,7 @@ Kanon: nilai bukan panjang. Workaround note = 1 baris tentang workaround, bukan 
 
 - [ ] Bisakah kode menjelaskan sendiri (nama fungsi + tipe jelas)? Kalau ya, skip komentar
 - [ ] Komentar menjelaskan why (alasan/konstrain/trap), bukan what
+- [ ] Purpose test: tujuan komentar namable dalam 1 baris; kalau tidak, jangan tulis
 - [ ] Satu komentar per blok logis, bukan per baris
 - [ ] 1 baris, atau 2 bila baris kedua membawa fakta baru
 - [ ] Sentence case, natural developer voice; tanpa caps-scream, tanpa emoji, tanpa separator dekoratif
