@@ -56,7 +56,7 @@ Scan berurutan L1 → L2 → L3 (mekanisme core). Di kode:
 
 - **L1** (`det:true`): Comment Hygiene yang mesin bisa lihat (dekoratif, restate, narration, empty label, end marker, emoji).
 - **L2** (`det:true|false`): komentar over-explained, line-by-line, signature echo, stiff-loud.
-- **L3** (`det:false`): group diagnostik di bawah. Buktikan dari sibling/consumer/DSL yang ada. Diskusi, bukan linter. Cari kluster, jangan tuduh isolated tell.
+- **L3** (`det:false`): group diagnostik di bawah. Buktikan dari sibling/consumer/DSL yang ada. Diskusi, bukan linter. Kluster (mekanisme core) mengalahkan isolated tell.
 
 ## Bagian 1: Comment Hygiene
 

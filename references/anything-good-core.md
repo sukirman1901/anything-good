@@ -8,7 +8,7 @@ Tiga layer dipakai semua skill. `sev` `error` selalu fix (a11y/mechanical); `war
 
 | Layer | Deteksi | `sev` khas | `det` |
 |---|---|---|---|
-| L1 Mechanical | bisa dicek mesin (regex/kl); kontras, spacing 8pt, em dash, tap 40-44px, komentar yang menyalin kode | error | true |
+| L1 Mechanical | bisa dicek mesin (regex/kl); kontras, spacing 8pt, tap 40-44px, komentar yang menyalin kode | error | true |
 | L2 Structural | pola struktur; hierarki CTA, kartu, alur paragraf, struktur pesan error, komentar restate | warning | false/true |
 | L3 Contextual | butuh intent produk/repo; komposisi anti-template, voice copy, keputusan kode berbukti sibling, konteks a11y | suggestion | false |
 
@@ -27,7 +27,7 @@ rule: <kalimat aturan>
 exceptions: [ ... ]          # kasus yang diizinkan
 ```
 
-## 3. Purpose test
+## 3. Purpose test + DNA
 
 1. Ambil teknik/element yang dipakai.
 2. Tanya: "Apa yang ini layani?"
@@ -35,7 +35,13 @@ exceptions: [ ... ]          # kasus yang diizinkan
 4. Jawaban "biar kelihatan AI" / "biar aman" → drop atau rework (kecuali `sev: error`).
 5. Alasan tak bisa ditulis 1 baris → keputusan belum valid, revisit.
 
-Di kode, bentuk domain-nya adalah Code Purpose Test ("what does this earn?") di `skills/good-code/SKILL.md`. Jawaban sah terikat repo ini, bukan "best practice".
+Bentuk domain (core `SKILL.md`): code earn its place; copy earn attention; ui earn its space. Jawaban sah terikat produk/repo ini, bukan "best practice". A11y tidak masuk tes earning.
+
+**Professional ≠ sanitized.** Bentuk yang earning (voice, tipe domain, komposisi berani) tetap.
+
+## 3b. Cluster > isolated tell
+
+Satu marker bukan pengakuan, kecuali `sev: error` (fabrikasi, a11y). Temuan = kluster tell tanpa alasan produk. AFTER: sebut kluster, jangan nomor terpisah untuk tiap dash/kartu/helper.
 
 ## 4. Dua usage mode
 
@@ -48,7 +54,6 @@ Di kode, bentuk domain-nya adalah Code Purpose Test ("what does this earn?") di 
 ## 5. Delivery Gate (4 blok)
 
 ### Blok 1 — Hard Gate (semua jawaban harus NO)
-- [ ] Ada em dash (`—`) di teks deliverable (selain carve-out dokumentasi rule)
 - [ ] Ada overflow horizontal / teks keluar kontainer / layout pecah di mobile
 - [ ] Ada angka/statistik tanpa sumber (10K+ users, 99.9% uptime, dst)
 - [ ] Ada testimoni fiktif (avatar AI, nama acak, jabatan acak)
@@ -99,14 +104,14 @@ Design Read satu baris sebelum generate (lihat core SKILL.md). Tanpa arah → la
 
 ## 7. Aksesibilitas = Hard-forever
 
-Kontras, keyboard, fokus, states, dan zoom adalah `sev: error` di L1. Purpose test TIDAK PERNAH menurunkan standar ini. Jika konflik produk vs aksesibilitas, aksesibilitas menang dan dicatat.
+Kontras, keyboard, fokus, states, dan zoom adalah `sev: error` di L1. Purpose test TIDAK PERNAH menurunkan standar ini. Jika konflik produk vs aksesibilitas, aksesibilitas menang dan dicatat. `prefers-reduced-motion` dihormati bila ada gerak; Dial 3 bukan izin mengabaikannya.
 
 ## 8. Path map
 
 | Skill | SKILL.md | Referensi |
 |---|---|---|
 | core | `SKILL.md` | `references/anything-good-core.md` |
-| good-ui | `skills/good-ui/SKILL.md` | `references/good-ui-principles.md` |
-| good-copy | `skills/good-copy/SKILL.md` | — |
+| good-ui | `skills/good-ui/SKILL.md` | `references/good-ui.md` |
+| good-copy | `skills/good-copy/SKILL.md` | `references/good-copy.md` |
 | good-code | `skills/good-code/SKILL.md` | `references/good-code.md` |
 | a11y | `skills/a11y/SKILL.md` | `skills/a11y/contrast.py` |

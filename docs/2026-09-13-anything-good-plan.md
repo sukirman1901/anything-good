@@ -121,7 +121,7 @@ Filter anti-slop untuk 4 domain (UI, copy, code, a11y) yang berbagi satu core me
 
 - **Core (file ini)** = mekanisme: evaluator 3-layer, purpose test, Delivery Gate, usage mode, dials. Tidak pernah menyalin aturan skill.
 - **Skill** = aturan domain, merujuk core dengan nomor `id`-nya, tidak menduplikasi mekanisme:
-  - `skills/good-ui/` — UI/visual + layout mobile + states + app/dashboard + motion. Katalog: `references/good-ui-principles.md`.
+  - `skills/good-ui/` — UI/visual + layout mobile + states + app/dashboard + motion. Katalog: `references/good-ui.md`.
   - `skills/good-copy/` — prose: headline, CTA, tone, em-dash, buzzwords, voice.
   - `skills/good-code/` — komentar kode: filter komentar AI, pertahankan yang bernilai.
   - `skills/a11y/` — kontras (formula + tabel + `contrast.py`), keyboard, fokus, states, zoom.
@@ -309,7 +309,7 @@ Kontras, keyboard, fokus, states, dan zoom adalah `sev: error` di L1. Purpose te
 | Skill | SKILL.md | Referensi |
 |---|---|---|
 | core | `SKILL.md` | `references/anything-good-core.md` |
-| good-ui | `skills/good-ui/SKILL.md` | `references/good-ui-principles.md` |
+| good-ui | `skills/good-ui/SKILL.md` | `references/good-ui.md` |
 | good-copy | `skills/good-copy/SKILL.md` | — |
 | good-code | `skills/good-code/SKILL.md` | — |
 | a11y | `skills/a11y/SKILL.md` | `skills/a11y/contrast.py` |
@@ -377,9 +377,9 @@ git commit -m "docs: DESIGN.schema.md template arah desain"
 
 **Files:**
 - Move: `/Users/aaa/Documents/Developer/Skills/good-ui/SKILL.md` → `/Users/aaa/Documents/Developer/Skills/anything-good/skills/good-ui/SKILL.md`
-- Move: `/Users/aaa/Documents/Developer/Skills/good-ui/references/good-ui-principles.md` → `/Users/aaa/Documents/Developer/Skills/anything-good/references/good-ui-principles.md`
+- Move: `/Users/aaa/Documents/Developer/Skills/good-ui/references/good-ui-principles.md` → `/Users/aaa/Documents/Developer/Skills/anything-good/references/good-ui.md`
 - Modify: `skills/good-ui/SKILL.md` (path + rujukan core + bab states/layoutmobile/app/motion)
-- Modify: `references/good-ui-principles.md` (src AS + section anyar)
+- Modify: `references/good-ui.md` (src AS + section anyar)
 
 Catatan: `frontend-expert/skills/anti-slop-design/references/good-ui-principles.md` TIDAK disentuh.
 
@@ -388,12 +388,12 @@ Catatan: `frontend-expert/skills/anti-slop-design/references/good-ui-principles.
 ```bash
 mkdir -p /Users/aaa/Documents/Developer/Skills/anything-good/skills/good-ui
 mv /Users/aaa/Documents/Developer/Skills/good-ui/SKILL.md /Users/aaa/Documents/Developer/Skills/anything-good/skills/good-ui/SKILL.md
-mv /Users/aaa/Documents/Developer/Skills/good-ui/references/good-ui-principles.md /Users/aaa/Documents/Developer/Skills/anything-good/references/good-ui-principles.md
+mv /Users/aaa/Documents/Developer/Skills/good-ui/references/good-ui-principles.md /Users/aaa/Documents/Developer/Skills/anything-good/references/good-ui.md
 rmdir /Users/aaa/Documents/Developer/Skills/good-ui/references /Users/aaa/Documents/Developer/Skills/good-ui 2>/dev/null || true
 ls /Users/aaa/Documents/Developer/Skills/anything-good/skills/good-ui/
 ```
 
-Expected: SKILL.md ada; references/good-ui-principles.md ada di pack; folder good-ui lama kosong/dihapus.
+Expected: SKILL.md ada; references/good-ui.md ada di pack; folder good-ui lama kosong/dihapus.
 
 - [ ] **Step 2: Rewrite `skills/good-ui/SKILL.md`** (versi nyambung ke core)
 
@@ -406,7 +406,7 @@ description: >-
   menemukan detection markers yang greppable, fix L1→L2→L3 (L3 butuh product
   intent). Use when building, restyling, or auditing UI — "rapihin UI", "buat
   lebih bagus", "audit UI", "terlalu generik", "design" — dan ikut meruju send
-  mekanisme core anything-good. Katalog: references/good-ui-principles.md.
+  mekanisme core anything-good. Katalog: references/good-ui.md.
 ---
 
 # Good UI (anything-good)
@@ -429,7 +429,7 @@ Bagian dari pack anything-good. Core (`../../SKILL.md`) memegang mekanisme (eval
 ## Evaluator 3-layer (ringkas; mekanisme di core `../../references/anything-good-core.md`)
 
 1. **Collect intent.** L1 tak butuh intent. L3 (`composition.*`, emphasis, removal) butuh product intent — bila `composition.*` memicu dan intent tak ada, TANYA dulu.
-2. **Scan by layer** — grep marker di `../../references/good-ui-principles.md` (L1 → L2 → L3).
+2. **Scan by layer** — grep marker di `../../references/good-ui.md` (L1 → L2 → L3).
 3. **Rank** — `sev`: error → warning → suggestion.
 4. **Fix** — terapkan rule + fix dari katalog.
 5. **Re-scan** — ulang grep; tiap baris tabel bersih atau di-waive (waiver disebut nama).
@@ -475,7 +475,7 @@ Bagian dari pack anything-good. Core (`../../SKILL.md`) memegang mekanisme (eval
 | Skeleton = product shot di hero | Screenshot nyata atau penjelasan jujur | L2 |
 | Feed "Sarah Chen updated..." | Event nyata atau delete | L2 |
 
-Katalog penuh: `../../references/good-ui-principles.md`.
+Katalog penuh: `../../references/good-ui.md`.
 
 ## Agent boundaries
 
@@ -494,7 +494,7 @@ Katalog penuh: `../../references/good-ui-principles.md`.
 - [ ] Close: re-scan L1 → L2 → L3; gate core PASS
 ```
 
-- [ ] **Step 3: Perluas `references/good-ui-principles.md`** — tambah `src: AS` pada legend dan section anyar (states, layoutmobile, app/dashboard, motion).
+- [ ] **Step 3: Perluas `references/good-ui.md`** — tambah `src: AS` pada legend dan section anyar (states, layoutmobile, app/dashboard, motion).
 
 Edit legend `src` di header:
 
@@ -556,8 +556,8 @@ Append section baru di akhir file:
 
 ```bash
 ls /Users/aaa/Documents/Developer/Skills/anything-good/skills/good-ui/
-test -s /Users/aaa/Documents/Developer/Skills/anything-good/references/good-ui-principles.md && echo OK
-grep -c "AS = anti-slop" /Users/aaa/Documents/Developer/Skills/anything-good/references/good-ui-principles.md
+test -s /Users/aaa/Documents/Developer/Skills/anything-good/references/good-ui.md && echo OK
+grep -c "AS = anti-slop" /Users/aaa/Documents/Developer/Skills/anything-good/references/good-ui.md
 ```
 
 Expected: OK; count ≥1; SKILL.md ada.
@@ -990,7 +990,7 @@ Bukan style guide: tidak menentukan warna, font, atau layout. Membuang slop dan 
 SKILL.md                 # core mekanisme
 references/              # referensi pack-level
   anything-good-core.md  # gate, metadata, dials, path map
-  good-ui-principles.md  # katalog rule UI
+  good-ui.md             # katalog rule UI
 skills/
   good-ui/               # UI + layout mobile + states + app/dashboard + motion
   good-copy/             # copy anti-AI: tone, rhythm, honesty, hygiene, voice
@@ -1030,7 +1030,7 @@ echo "--- skills ---"
 for s in good-ui good-copy good-code a11y; do test -f skills/$s/SKILL.md && echo "OK $s"; done
 echo "--- refs ---"
 test -f references/anything-good-core.md && echo "OK reference core"
-test -f references/good-ui-principles.md && echo "OK reference ui"
+test -f references/good-ui.md && echo "OK reference ui"
 echo "--- script ---"
 python3 skills/a11y/contrast.py "#FFFFFF" "#777777"
 echo "--- symlink ---"

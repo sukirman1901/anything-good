@@ -5,12 +5,13 @@ description: >-
   contrast.py), non-text contrast 3:1, fokus visible, keyboard, states, zoom
   200%, dan mobile keyboard. Use when building or auditing for
   accessibility (termasuk "aksesibilitas", "AI dapat keyboard?", "kontras", "a11y",
-  "WCAG", "audit aksesibilitas"), yang merujuk mekanisme core anything-good.
+  "WCAG", "audit aksesibilitas", "aria", "reduced motion"), yang merujuk mekanisme
+  core anything-good.
 ---
 
 # a11y (anything-good)
 
-Bagian dari pack anything-good. Core (`../../SKILL.md`) memegang mekanisme; khususnya, **aksesibilitas = Hard-forever** (Lihat Blok 1 gate core): kontras, keyboard, fokus, states, zoom adalah `sev: error` di L1 dan TIDAK pernah dilemahkan oleh purpose test. Skill ini adalah detektor + cara fix-nya.
+Bagian dari pack anything-good. Core (`../../SKILL.md`) memegang mekanisme; **aksesibilitas = Hard-forever** (Blok 1): kontras, keyboard, fokus, states, zoom, `prefers-reduced-motion`. Purpose test TIDAK pernah melemahkan AA. Skill ini detektor + cara fix. ARIA redundan = completing patterns, bukan a11y.
 
 ## Tools
 
@@ -60,6 +61,16 @@ Bagian dari pack anything-good. Core (`../../SKILL.md`) memegang mekanisme; khus
 |---|---|---|---|---|---|
 | `l1.a11y.no-zoom` | error | false | AS | Font fixed px / kontainer overflow:hidden yang terklipping di 200% | Fluid type reflow; tanpa clipping; verifikasi 200% di viewport sempit |
 | `l1.a11y.keyboard-covers-form` | error | false | AS | Input di bawah viewport tertutup keyboard on-screen, tanpa scroll-into-view | Saat fokus, input scroll ke atas keyboard + bottom padding cukup |
+| `l1.a11y.reduced-motion` | error | true | AS | Animasi/loop tetap jalan saat `prefers-reduced-motion: reduce` | Hormati media query: kurangi/hilangkan gerak. MOTION dial 3 bukan izin mengabaikan |
+
+## Nama & ARIA (completing patterns)
+
+A11y Hard-forever tidak berarti menempel ARIA di semua elemen. Itu completing patterns.
+
+| id | sev | det | src | tell | fix |
+|---|---|---|---|---|---|
+| `l2.a11y.aria-soup` | warning | true | AS | `aria-label` menyalin teks yang sudah kelihatan; `role="button"` di `<button>`; `tabindex="0"` di elemen yang sudah native | Hapus redundan. ARIA hanya menutup celah yang native tidak sanggup. Nama aksesibel = nama yang terlihat, kecuali ikon-only |
+| `l2.a11y.verbose-directions` | warning | false | AS | "Please click the blue button located in the top right corner" demi "a11y" | Copy spesifik (`good-copy`); jangan mengganti kontras/keyboard dengan prosa arah |
 
 ## Checklist a11y
 
@@ -69,4 +80,6 @@ Bagian dari pack anything-good. Core (`../../SKILL.md`) memegang mekanisme; khus
 - [ ] Semua element reachable+operable keyboard; dialog tutup Escape; tanpa outline:none tanpa pengganti
 - [ ] States empty/loading/error ada & perseptif, bukan color-only
 - [ ] Teks bisa 200% tanpa clipping; keyboard tak menutup input fokus
-- [ ] Delivery Gate core PASS (a11y tak pernah di-waive)
+- [ ] `prefers-reduced-motion` dihormati bila ada gerak
+- [ ] Tanpa aria soup; native semantics menang
+- [ ] Delivery Gate core PASS (a11y tak pernah di-waive; purpose test tidak menurunkan AA)

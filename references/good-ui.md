@@ -1,6 +1,6 @@
-# Good UI Principles — Technical Reference
+# good-ui
 
-Distilled from "How to Design Better UI 3.0" (Adrian Kuleszo) + "50 UI Do's & Don'ts" (Pixsel Academy) and encoded so a UI builder/critic can score surfaces "like code, not vibes."
+Tes pack: **every element should earn its space.** Katalog di bawah adalah detector dan default ladder, bukan style guide. Isolated tell bukan pengakuan; kluster komposisi adalah. Kontras/keyboard/fokus: skill `a11y`. Copy: skill `good-copy`.
 
 **Operating model (UI Critic + UI Generator contract):**
 
@@ -77,7 +77,7 @@ Violating a Layer 1 rule is a defect, full stop. These are what code review / `g
 
 | id | Marker | Fix | sev | det |
 |---|---|---|---|---|
-| `layout.grid-anatomy` | Container ≠ safe zone: content max-width not ≈1200–1240px (desktop) / 343px (mobile 375); cols/gutters off ladder | Desktop 12-col @ 20px gutters, side margin ≥100px → container 1240; mobile 4-col @ 8px gutters, margin ≥16px → 343 | error | true |
+| `layout.grid-anatomy` | Container ≠ declared safe zone; no max-width / no gutters | Start from a coherent container (pack default if none: ~1200–1240 desktop / 12-col @ 20px; mobile 4-col @ 8px). DESIGN.md and existing tokens win. Not a deliverable failure by itself | warning | true |
 | `layout.8pt` | `gap: 12px; padding: 22px; margin: 13px` (not on 4–8pt ladder) | Nearest 8pt value: `8/16/24/32/40/48/56/64` (4pt for fine detail; 5px only on Bootstrap stacks) | error | true |
 | `layout.breaking-order` | Breakpoints tuned from desktop down | Build mobile 375/min first, scale up — scaling down is what breaks | error | true |
 | `layout.row-grid` | Row heights/baseline drift between siblings | Align text rows to one baseline; 8px row steps | warning | true |
@@ -95,6 +95,8 @@ Basic terms (anchor for debate — say "fix the container", not "nudge the eleme
 | **Row / baseline grid** | Horizontal rhythm off 8px steps; text aligns to one line | Height = 8px steps; line-height cascade once |
 | **Breakpoint** | Width where composition changes (not margin tweaks) | 375 → 768 → 1024 → 1440 |
 | **Box model** | Everything nests container → columns → sections | Two siblings in one row share a container |
+
+Numbers above are the pack **default ladder** when DESIGN.md / existing tokens are silent. They are not a deliverable failure by themselves (`layout.grid-anatomy` = warning).
 
 ## Color (mechanical half)
 
@@ -259,7 +261,7 @@ These are **not linter rules**. They need a product intent input; without one, a
 
 ## Composition & Anti-Template
 
-The AI-slop smell is structural, not `padding: 22px`. The signature is a forced stack:
+The AI-slop smell is a **cluster**, not `padding: 22px`. Isolated badge, card, or gradient is normal. The signature is a forced stack without product reason:
 
 ```
 badge
@@ -293,14 +295,14 @@ Heuristics that live here (apply with judgment):
 - **Above the fold**: what must be seen first is a *product decision*, not a CSS one. Tease the next section (content peeking) to guide scroll.
 - **Modal vs inline**: irreversible/destructive/purchase → modal; routine errors → inline/snackbar. Never modal-by-default.
 - **Emphasis**: which plan/card/feature gets highlighted is a business intent, not an aesthetic choice.
-- **Removal**: the strongest composition tool. When a product can say less, the page gets calmer — "should this information exist at all?" is always in scope.
+- **Removal**: the strongest composition tool. Tes pack: does this element earn its space? "Should this exist at all?" is always in scope.
 - **Product fit**: the last gate — does the UI serve *this* product and *this* user, or would it paste onto any SaaS demo? If the page is interchangeable, composition failed.
 
 ## Copy & microcopy (judgment-heavy)
 
 | id | Marker | Fix | sev | det | src |
 |---|---|---|---|---|---|
-| `copy.human` | "In stock: 7" / "Submit" / robotic | Human tone: "Only 7 left in stock!", "Join the Club!" | warning | false | B2 |
+| `copy.human` | Robotic counts / "Submit" / inflated energy ("Join the Club!" without that voice) | Delegasi `good-copy`: specific truth, bukan template. Voice sampel/DESIGN.md menang | warning | false | B2 |
 | `copy.modal-mirror` | Modal buttons mismatch the question ([Cancel][OK]) | [Don't Cancel][Yes, Cancel] — restates action + outcome | warning | false | B2 |
 | `copy.no-double-negative` | "Are you sure you don't want to keep your account?" | Ask positively ("Keep your account?") | error | false | B1 |
 | `copy.vs-verb` | Verb on nav item vs noun destination confusion | CTA buttons = verbs; nav/list items = nouns | warning | false | B2 |

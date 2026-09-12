@@ -1,7 +1,7 @@
 # anything-good — Design Doc
 
 Tanggal: 2026-09-13
-Status: Pack v1 shipped; good-code v2 disetujui 2026-09-13 (Bagian 6)
+Status: Pack shipped; DNA + cluster + good-copy/ui/a11y audit 2026-09-13
 
 ## Ringkasan
 
@@ -18,11 +18,12 @@ Prinsip arsitektur (diadopsi dari anti-slop):
 /Users/aaa/Documents/Developer/Skills/anything-good/
 ├── SKILL.md                    # CORE: mekanisme bersama
 ├── references/
-│   ├── anything-good-core.md   # kedalaman core (jika core panjang)
-│   ├── good-ui-principles.md   # katalog rule good-ui (dipindah dari dalam good-ui lama)
-│   └── good-code.md            # bentuk keputusan kode (bukan katalog rule)
+│   ├── anything-good-core.md   # kedalaman core
+│   ├── good-ui.md              # katalog rule UI
+│   ├── good-copy.md            # bentuk keputusan copy
+│   └── good-code.md            # bentuk keputusan kode
 ├── skills/
-│   ├── good-ui/SKILL.md            # pointed ke ../../references/good-ui-principles.md
+│   ├── good-ui/SKILL.md            # pointed ke ../../references/good-ui.md
 │   ├── good-copy/SKILL.md
 │   ├── good-code/SKILL.md
 │   └── a11y/SKILL.md
@@ -70,7 +71,7 @@ Struktur seragam: purpose → kapan audit/bangun → sourcer metadata → aturan
 - Evaluator 3-layer existing + metadata + cross-book conflicts = inti.
 - Tambahan: states (empty/loading/error wajib), layoutmobile (reflow, breakpoint berdasar konten, grid collapse, tap 44px, overflow, nav mobile), pola app/dashboard (stat cards bohong, activity feed filler, chart tanpa pertanyaan, filler data), motion (MOTION dial, no endless pulse).
 - Copy L3 rujuk good-copy.
-- Rujuk `references/good-ui-principles.md` (migrasi + rule anyar `src: AS`).
+- Rujuk `references/good-ui.md` (migrasi + rule anyar `src: AS`).
 
 **good-copy** (adaptasi penuh antislop-copywriting + improve):
 - Tone & voice, rhythm & structure, honesty, hygiene, voice calibration.
@@ -104,7 +105,7 @@ Struktur seragam: purpose → kapan audit/bangun → sourcer metadata → aturan
 
 - **DESIGN.schema.md**: fields identitas produk, audience, mood, palet, tipografi (alasan), 3 dials, identity motif, konstrain opsional. Agent hanya memformat jawaban user, tak mengarang contoh.
 - **Lisensi**: MIT; atribusi skema rule publik (MIT) + 2 buku UI (B1/B2) + `src` per-rule.
-- **Migrasi**: pindahkan good-ui lama (`Documents/Developer/Skills/good-ui/SKILL.md` → pack/skills/good-ui/SKILL.md; `references/good-ui-principles.md` → pack/references/). `frontend-expert/skills/anti-slop-design/references/` TIDAK disentuh.
+- **Migrasi**: pindahkan good-ui lama (`Documents/Developer/Skills/good-ui/SKILL.md` → pack/skills/good-ui/SKILL.md; `references/good-ui.md` → pack/references/). `frontend-expert/skills/anti-slop-design/references/` TIDAK disentuh.
 - **README**: apa itu, install (symlink), cara pakai, path, lisensi.
 
 ## Parameter proyek
@@ -181,8 +182,24 @@ Saat ragu saja: solusi koheren terkecil yang masih punya bentuk; butuh vs "good 
 - Comment Hygiene `id`/`sev`/`det`/`src` tetap. Preservasi business logic, security, API, workaround, edge.
 - Skill memegang aturan domain, core memegang mekanisme. Pengecualian: Change Slop di core; group L3 tanpa `id`.
 
+## Bagian 7 — DNA pack, cluster, copy/ui/a11y (disetujui 2026-09-13)
+
+Satu tes, tiga bentuk: code earn its place; copy earn attention; ui earn its space. A11y Hard-forever, bukan tes earning.
+
+**Cluster > isolated tell** naik ke core. Em dash keluar Hard Gate dan L1; detector copy = kebiasaan, `suggestion`. Professional ≠ sanitized.
+
+good-copy: What good means + 2 load-bearing + detector sebagai bukti (empty-claim, capability-inflation, surface-overload, false-agency, evasive-passive). Bukan kamus kata. Bentuk: `references/good-copy.md`.
+
+good-ui MUST: lantai (8pt, overflow, tap, states, data jujur, kluster komposisi). Grid pixel / `#000` / form single-column / dropdown→chips = default atau heuristik. `layout.grid-anatomy` di katalog = warning.
+
+a11y: tambah `prefers-reduced-motion` (error) + aria soup (warning). Kontras tidak dilunakkan.
+
 ## Selanjutnya
 
 - [x] Review user atas prinsip + amandemen v2
 - [x] Tulis implementation plan
 - [x] Ship skill + core + README + `references/good-code.md`
+- [x] DNA + cluster di core; em dash keluar Hard Gate
+- [x] good-copy v2 + `references/good-copy.md`
+- [x] good-ui MUST → tes ruang
+- [x] a11y aria soup + reduced-motion
