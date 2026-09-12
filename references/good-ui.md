@@ -32,7 +32,7 @@ Every rule below is a table row. Columns mean:
 | `id` | Stable identifier for the engine (`layer.group.name`) |
 | `sev` | `error` (a11y/mechanical breach — fix always) · `warning` (heuristic defect — fix unless waived) · `suggestion` (judgment — needs product context) |
 | `det` | `true` = deterministic/lintable · `false` = heuristic/judgment, requires context |
-| `src` | `B1` = UI 3.0 book · `B2` = 50 Do's & Don'ts book · `AS` = anti-slop (adapted) |
+| `src` | `B1` = UI 3.0 book · `B2` = 50 Do's & Don'ts book · `AS` = this pack |
 
 Canonical encoding (the table rows are the compact form of this):
 

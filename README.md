@@ -45,8 +45,10 @@ Skills are detected via frontmatter `description`.
 3. Close with **Delivery Gate** PASS/FAIL plus evidence (core, Blocks 1–4). Punctuation is not a Hard Gate.
 4. No design direction → label "draft without direction" (dials ENERGY 1/RHYTHM 1/MOTION 1), not a deliverable.
 
-## Attribution & license
+## License
 
-MIT (c) 2026. Built on a public anti-slop rule scheme (MIT). The UI rule catalog marks origin per pattern via `src`:
+MIT (c) 2026 heykirman.
+
+The UI rule catalog marks origin per pattern via `src`:
 - **B1/B2**: *How to Design Better UI 3.0* (Adrian Kuleszo) and *50 UI Do's & Don'ts* (Pixsel Academy)
-- **AS**: patterns adapted from the public anti-slop scheme (MIT)
+- **AS**: this pack

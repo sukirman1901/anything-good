@@ -22,7 +22,7 @@ Canonical encoding (table rows in skills are the compact form). **Exception:** g
 id: layer.group.name        # e.g. accessibility.text-contrast, l2.hierarchy.cta
 sev: error                   # error | warning | suggestion
 det: true                    # true = machine-checkable
-src: AS                      # source: B1=UI 3.0, B2=50 Do's&Don'ts, AS=anti-slop (adapted)
+src: AS                      # source: B1=UI 3.0, B2=50 Do's&Don'ts, AS=this pack
 rule: <rule sentence>
 exceptions: [ ... ]          # allowed cases
 ```
