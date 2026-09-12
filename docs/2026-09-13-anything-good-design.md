@@ -100,7 +100,7 @@ Struktur seragam: purpose → kapan audit/bangun → sourcer metadata → aturan
 ## Bagian 5 — DESSIGN.schema.md, lisensi, migrasi, README (disetujui)
 
 - **DESIGN.schema.md**: fields identitas produk, audience, mood, palet, tipografi (alasan), 3 dials, identity motif, konstrain opsional. Agent hanya memformat jawaban user, tak mengarang contoh.
-- **Lisensi**: MIT; atribusi anti-slop (miqdadbadjuber) + 2 buku UI (B1/B2) + `src` per-rule.
+- **Lisensi**: MIT; atribusi skema rule publik (MIT) + 2 buku UI (B1/B2) + `src` per-rule.
 - **Migrasi**: pindahkan good-ui lama (`Documents/Developer/Skills/good-ui/SKILL.md` → pack/skills/good-ui/SKILL.md; `references/good-ui-principles.md` → pack/references/). `frontend-expert/skills/anti-slop-design/references/` TIDAK disentuh.
 - **README**: apa itu, install (symlink), cara pakai, path, lisensi.
 
@@ -108,7 +108,7 @@ Struktur seragam: purpose → kapan audit/bangun → sourcer metadata → aturan
 
 - Lokasi pack: `/Users/aaa/Documents/Developer/Skills/anything-good/`
 - Migrasi dari: `/Users/aaa/Documents/Developer/Skills/good-ui/`
-- Sumber adopsi: anti-slop repo (miqdadbadjuber) — sudah diunduh ke temp saat riset.
+- Sumber adopsi: skema rule anti-slop publik (MIT) — sudah diunduh ke temp saat riset.
 - Skill: good-ui, good-copy, good-code, a11y.
 - Pemasangan: symlink → `~/.config/opencode/skills/anything-good`.
 

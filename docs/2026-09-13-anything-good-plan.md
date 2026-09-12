@@ -1016,8 +1016,7 @@ Skill terdeteksi lewat `description` frontmatter. Agent lain: salin folder skill
 
 ## Atribusi & lisensi
 
-MIT (c) 2026. Diadaptasi dari:
-- **anti-slop** oleh Miqdad Badjuber (MIT) — skema core+skill, purpose test, dials, Delivery Gate, dan banyak pola rule. https://github.com/miqdadbadjuber/anti-slop
+MIT (c) 2026. Dibangun di atas skema rule anti-slop publik (MIT).
 - **good-ui** — katalog bentuk UI dari *How to Design Better UI 3.0* (Adrian Kuleszo) dan *50 UI Do's & Don'ts* (Pixsel Academy). Tiap rule menandai sumbernya via kolom `src` (`B1`/`B2`/`AS`).
 ```
 
