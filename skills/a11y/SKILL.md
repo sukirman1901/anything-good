@@ -4,8 +4,8 @@ description: >-
   Accessibility skill dari pack anything-good: kontras (formula WCAG + tabel +
   contrast.py), non-text contrast 3:1, fokus visible, keyboard, states, zoom
   200%, dan mobile keyboard. Use when building or auditing for
-  accessibility — "aksesibilitas", "AI dapat keyboard?" "kontras", "a11y",
-  "WCAG", "audit aksesibilitas" — merujuk mekanisme core anything-good.
+  accessibility (termasuk "aksesibilitas", "AI dapat keyboard?", "kontras", "a11y",
+  "WCAG", "audit aksesibilitas"), yang merujuk mekanisme core anything-good.
 ---
 
 # a11y (anything-good)

@@ -5,8 +5,8 @@ description: >-
   (decorative, restate obvious, workflow narration, empty labels, vague TODO,
   signature echo, emoji, end markers) tanpa menyentuh kode, plus checklist
   preventif sebelum menulis komentar. Use when writing or editing code
-  comments — "bersihkan komentar AI", "rapikan komentar", "komentar terlalu
-  panjang" — merujuk mekanisme core anything-good.
+  comments (termasuk "bersihkan komentar AI", "rapikan komentar", "komentar terlalu
+  panjang"), yang merujuk mekanisme core anything-good.
 ---
 
 # Good Code (anything-good)
@@ -44,7 +44,7 @@ Komentar berharga bila menjelaskan hal yang kode belum perlihatkan: alasan, kons
 | `l2.comment.line-by-line` | warning | true | AS | Komentar tiap statement trivial | 1 komentar per blok logis, atau tidak sama sekali |
 | `l2.comment.stiff-loud` | warning | true | AS | "responsible for validating whether the supplied credentials are valid..." / `// MAIN LOGIC` caps | Kalimat natural developer: "// Validate credentials before issuing a token." |
 
-## Bukan ban — pertahankan komentar yang menjelaskan
+## Bukan ban: pertahankan komentar yang menjelaskan
 
 Business logic/intent, architectural decisions, security considerations, performance trade-offs, concurrency, protocol details, API contracts, workarounds, edge cases & assumptions, licensing/legal.
 

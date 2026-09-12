@@ -2,8 +2,8 @@
 name: good-copy
 description: >-
   Copy & text skill dari pack anything-good: tone & voice, rhythm & structure,
-  honesty, dan hygiene anti-AI — termasuk em dash, buzzwords, fake stats,
-  kotak-kotak kosong, dan voice calibration (sampel user menang). Use when
+  honesty, dan hygiene anti-AI (em dash, buzzwords, fake stats,
+  kotak-kotak kosong, dan voice calibration) (sampel user menang). Use when
   writing or editing prose: headlines, CTAs, tone, error/empty states, landing
   copy, "buat copy lebih bagus", "tulisan terasa AI", "pesan error", "teks
   tombol". Merujuk mekanisme core anything-good.
