@@ -50,5 +50,5 @@ Skills are detected via frontmatter `description`.
 MIT (c) 2026 heykirman.
 
 The UI rule catalog marks origin per pattern via `src`:
-- **B1/B2**: *How to Design Better UI 3.0* (Adrian Kuleszo) and *50 UI Do's & Don'ts* (Pixsel Academy)
-- **AS**: this pack
+
+**B1/B2**: *How to Design Better UI 3.0* (Adrian Kuleszo) and *50 UI Do's & Don'ts* (Pixsel Academy)
