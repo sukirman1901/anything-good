@@ -1,49 +1,41 @@
 # anything-good
 
-Multi-domain anti-slop skill pack for AI coding agents: **UI**, **copy**, **code**, and **a11y**. One DNA: every line, sentence, and element must earn its keep. Cluster beats isolated tell. Not a style guide.
+When an agent builds UI, writes copy, or edits code, it finishes the pattern it has seen most often. This pack makes it answer why that pattern belongs in this product.
 
-Professional ≠ sanitized. Design direction comes from the user (via `DESIGN.md`).
+A line, a sentence, or an element that cannot earn its keep does not ship. One tell is normal. A cluster with no reason is slop.
 
-## Layout
-
-```
-SKILL.md                 # core: DNA, cluster, gate, dials
-references/
-  anything-good-core.md  # gate, metadata, path map
-  good-ui.md             # UI rule catalog
-  good-copy.md           # copy decision shapes
-  good-code.md           # code decision shapes
-  good-ux.md             # UX knowledge map (not a skill)
-skills/
-  good-ui/               # UI: earn its space
-  good-copy/             # copy: earn attention
-  good-code/             # code: earn its place
-  a11y/                  # Hard-forever; contrast.py
-DESIGN.schema.md         # design-direction template
-```
+It does not choose your colors, type, or layout. You do, in `DESIGN.md`.
 
 ## Install
-
-Works with Cursor, Claude Code, OpenCode, Codex, Copilot, and other agents the [skills CLI](https://github.com/vercel-labs/skills) supports.
 
 ```bash
 npx skills add sukirman1901/anything-good
 ```
 
-The CLI detects installed agents. Global (all projects):
+That installs into the agents already on the machine. Every project:
 
 ```bash
 npx skills add sukirman1901/anything-good -g
 ```
 
-Skills are detected via frontmatter `description`.
+## Use
 
-## How to use
+The agent asks: apply while building, or audit what already exists.
 
-1. The agent reads core `SKILL.md` and asks usage mode (DURING / AFTER).
-2. Domain skills scan L1→L2→L3. An isolated tell is not a conviction; a cluster is. L1/L2 use `id`. L3 good-code uses group name + repo evidence.
-3. Close with **Delivery Gate** PASS/FAIL plus evidence (core, Blocks 1–4). Punctuation is not a Hard Gate.
-4. No design direction → label "draft without direction" (dials ENERGY 1/RHYTHM 1/MOTION 1), not a deliverable.
+While building, it applies the rules and only hands work over when the gate passes with evidence. An audit is a numbered list. You pick the numbers. Unselected items stay.
+
+No design direction means a labeled draft, not a deliverable.
+
+## Layout
+
+```
+SKILL.md                 # core: what earns, cluster, gate, dials
+references/              # catalogs and decision shapes
+skills/                  # ui, copy, code, a11y
+DESIGN.schema.md         # questions for look-and-feel
+```
+
+`references/good-ux.md` is a knowledge map. It is not a skill yet.
 
 ## License
 
