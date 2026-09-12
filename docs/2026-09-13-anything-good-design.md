@@ -5,7 +5,7 @@ Status: Draft proposal (pending review user)
 
 ## Ringkasan
 
-anything-good adalah **skill pack multi-domain anti-slop** untuk AI coding agents. Satu pack berisi 4 skill (UI, copy, code, a11y) yang berbagi **core mekanisme** tunggal: evaluator 3-layer, purpose test, Delivery Gate, dua usage mode, dan arah desain via DESIGN.md + dials. Dibangun dengan mengadopsi + mengimprove skema anti-slop (miqdadbadjuber, MIT) dan mewarisi katalog good-ui (dari 2 buku UI, MIT-friendly attribution).
+anything-good adalah **skill pack multi-domain anti-slop** untuk AI coding agents. Satu pack berisi 4 skill (UI, copy, code, a11y) yang berbagi **core mekanisme** tunggal: evaluator 3-layer, purpose test, Delivery Gate, dua usage mode, dan arah desain via DESIGN.md + dials. Dibangun dengan mengadopsi + mengimprove skema anti-slop publik (MIT) dan mewarisi katalog good-ui (dari 2 buku UI, MIT-friendly attribution).
 
 Prinsip arsitektur (diadopsi dari anti-slop):
 - Core memegang mekanisme; skill memegang aturan domain.
